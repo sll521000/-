@@ -298,16 +298,11 @@
       }
 
       async function trySetup(p1) {
-        const p2 = prompt("再输入一次确认");
-        if (p2 === null) return false;
-        if (p1 !== p2) {
-          showLock("setup", "两次输入不一致");
-          return false;
-        }
         const h = await sha256(p1);
         localStorage.setItem(PW_KEY, h);
         return true;
       }
+
 
       async function tryUnlock(p) {
         const stored = localStorage.getItem(PW_KEY);
