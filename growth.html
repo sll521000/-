@@ -251,19 +251,14 @@
       const AUTH_SESSION = "qilin.growth.authed";
       const SALT = "qilin-growth-salt::v1";
 
-      async function sha256(s) {
-        try {
-          const enc = new TextEncoder().encode(SALT + s);
-          const buf = await crypto.subtle.digest("SHA-256", enc);
-          return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
-        } catch {
-          // 兜底：低端浏览器 / file:// 协议
-          let h = 5381;
-          const str = SALT + s;
-          for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
-          return "fb_" + (h >>> 0).toString(16);
-        }
+           function sha256(s) {
+        // 纯同步 djb2 哈希 — 不依赖 Web Crypto API 也不会卡
+        let h = 5381;
+        const str = SALT + s;
+        for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+        return "fb_" + (h >>> 0).toString(16);
       }
+
 
       const lockScreen = document.getElementById("lock-screen");
       const mainEl = document.getElementById("main");
