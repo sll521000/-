@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>麒麟 | 一个持续努力的人</title>
+    <meta
+      name="description"
+      content="麒麟的个人入口站：成长复盘、资源共享、AI 聚合平台与万物联合。一个持续努力的人在持续做的事。"
+    />
+    <meta name="theme-color" content="#f5f1e8" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://qilin-portfolio.vercel.app/" />
+
+    <!-- Favicon / Touch icon -->
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="麒麟" />
+    <meta property="og:title" content="麒麟 | 一个持续努力的人" />
+    <meta property="og:description" content="把成长、资源、AI 和连接整理成一个清晰入口。" />
+    <meta property="og:url" content="https://qilin-portfolio.vercel.app/" />
+    <meta property="og:image" content="./og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="麒麟 | 一个持续努力的人" />
+    <meta name="twitter:description" content="把成长、资源、AI 和连接整理成一个清晰入口。" />
+    <meta name="twitter:image" content="./og-image.svg" />
+
+    <!-- Fonts (preconnect for fast first paint) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+SC:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- JSON-LD: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "麒麟",
+        "alternateName": "Qilin",
+        "description": "一个持续努力的人 — 长期复盘、持续学习、AI 实践。",
+        "url": "https://qilin-portfolio.vercel.app/",
+        "knowsAbout": ["自我成长", "复盘方法论", "AI 工具实践", "工作流自动化"],
+        "sameAs": []
+      }
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">跳到正文</a>
+
+    <header class="site-header" role="banner">
+      <a class="brand" href="#top" aria-label="麒麟 · 回到首页">
+        <span class="brand-mark" aria-hidden="true">麒</span>
+        <span>麒麟</span>
+      </a>
+
+      <nav class="nav" id="primary-nav" aria-label="主导航">
+        <a href="#entries" data-nav>四个入口</a>
+        <a href="#about" data-nav>关于</a>
+        <a href="#now" data-nav>现在</a>
+        <a href="#projects" data-nav>项目</a>
+        <a href="#skills" data-nav>工具库</a>
+        <a href="#changelog" data-nav>日志</a>
+      </nav>
+
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换主题">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-label="菜单" aria-expanded="false">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero container" id="top" aria-label="个人品牌主视觉">
+        <div class="hero-card">
+          <div class="avatar-block">
+            <div class="avatar-placeholder" aria-label="头像占位">麒</div>
+            <span class="avatar-status">最近活跃 · 写代码 / 学技能</span>
+          </div>
+
+          <h1 class="hero-name">麒麟</h1>
+          <p class="role">一个持续努力的人</p>
+          <p class="role-sub">Self-evolving, long-term compounding.</p>
+
+          <div class="status-list" aria-label="当前状态">
+            <span>持续学习</span>
+            <span>长期复盘</span>
+            <span>AI 实践</span>
+          </div>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Personal Operating Hub · 2026</p>
+          <h2>
+            把<em>成长</em>、<em>资源</em>、<em>AI</em><br />
+            和连接整理成一个<br />
+            <em>清晰入口</em>。
+          </h2>
+          <p class="hero-lede">
+            这里会记录我的个人成长与复盘，沉淀可复用资源，
+            逐步建设一个 AI 聚合平台，并尝试把人、工具、项目和机会连接起来。
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#entries">看四个入口</a>
+            <a class="button button-secondary" href="./ai.html">AI 聚合 × 万物联合</a>
+            <a class="button button-secondary" href="./contact.html">联系我</a>
+          </div>
+
+          <a class="version-pill" href="#changelog" aria-label="查看更新日志">
+            <span class="version-dot" aria-hidden="true"></span>
+            v0.6 · 密码锁 / 每日日记 / AI 主推 · 2026-07-28
+          </a>
+        </div>
+      </section>
+
+      <!-- AI 聚合 · 主推站入口（hero 区下方，紧邻 hero） -->
+      <section class="section-tight container" id="ai-entry">
+        <div class="hero-ai-entry">
+          <div class="hero-ai-entry-text">
+            <span class="hero-ai-entry-tag">AI 聚合 × 主推</span>
+            <h3>前端展示工具与资源，后端用 AI 主推站承接转化</h3>
+            <p>
+              你看到的资源 / 工具 / Skills 都是前端的钩子 — 有需要的人会进我的两个 AI 平台消耗 token。
+              进入 AI 聚合页 →
+            </p>
+          </div>
+          <div class="hero-ai-entry-actions">
+            <a class="button button-primary" href="./ai.html">进入 AI 聚合页</a>
+            <a class="button button-secondary" href="./skills.html">看工具库</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== 四大入口 ====================== -->
+      <section class="section container" id="entries" aria-labelledby="entry-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">Main Entries</p>
+            <h2 id="entry-title">四个主要入口</h2>
+          </div>
+          <p class="section-heading-note">
+            从入口走进具体场景 — 每一个都支持本地写入、导出备份。
+          </p>
+        </header>
+
+        <div class="entry-grid reveal-stagger">
+          <a class="entry-card" href="./growth.html" aria-label="进入成长复盘">
+            <span class="card-index">01</span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+                <line x1="9" y1="17" x2="13" y2="17"/>
+              </svg>
+            </span>
+            <h3>成长复盘</h3>
+            <p>每周复盘 · 学习笔记 · 行动记录 · 阶段总结 — 复盘不是写日记，是把行动变成经验。</p>
+            <span class="card-arrow">进入 →</span>
+          </a>
+
+          <a class="entry-card" href="./resources.html" aria-label="进入资源共享">
+            <span class="card-index">02</span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </span>
+            <h3>资源共享</h3>
+            <p>AI 工具清单 · 学习资源 · 效率模板 · 实用链接 — 真正在用的清单。</p>
+            <span class="card-arrow">进入 →</span>
+          </a>
+
+          <a class="entry-card" href="./ai.html" aria-label="进入 AI 聚合">
+            <span class="card-index">03</span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </span>
+            <h3>AI 聚合 × 万物联合</h3>
+            <p>聚合 AI 工具、实践案例、可联合的项目机会。从信息聚合走向连接。</p>
+            <span class="card-arrow">进入 →</span>
+          </a>
+
+          <a class="entry-card" href="./contact.html" aria-label="进入联系我">
+            <span class="card-index">04</span>
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </span>
+            <h3>联系我</h3>
+            <p>交流、合作、资源互换、项目连接 — 微信一键复制，桌面端也能用。</p>
+            <span class="card-arrow">进入 →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ====================== About / Bio ====================== -->
+      <section class="section container" id="about" aria-labelledby="about-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2 id="about-title">关于</h2>
+          </div>
+          <p class="section-heading-note">用一段话讲清楚我是谁、在做什么、为什么这么做。</p>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              我叫 <strong>麒麟</strong>，长期把「努力」当作可执行的工程：选择方向、拆解目标、
+              把每天的行动变成可复用的经验。我不是最有天赋的那类，
+              但我相信 <em>持续 + 复盘 + 调整</em> 是一条可以走得很远的路。
+            </p>
+            <p>
+              这个站点是我对外的「可索引的自我」 — 用来沉淀我学到的东西、踩过的坑，
+              以及我在不同项目里尝试过的解法。如果你也在做类似的事，欢迎联系我交流。
+            </p>
+            <p class="signature">— 持续努力的人，2026 年。</p>
+          </div>
+          <div class="stat-grid reveal">
+            <div class="stat-card">
+              <div class="stat-value">3+</div>
+              <div class="stat-label">个并行在做的方向</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">每日</div>
+              <div class="stat-label">写复盘</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">每周</div>
+              <div class="stat-label">做整理</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">每月</div>
+              <div class="stat-label">发一次进展</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== Now (Derek Sivers) ====================== -->
+      <section class="section container" id="now" aria-labelledby="now-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">Now</p>
+            <h2 id="now-title">我在做的几件事</h2>
+          </div>
+          <p class="section-heading-note">不立 flag，只列当下。每月更新一次。</p>
+        </header>
+
+        <article class="now-card reveal">
+          <div class="now-head">
+            <span class="now-badge">最近更新</span>
+            <span class="now-date">2026-07 · 第三季度</span>
+          </div>
+          <ul class="now-list">
+            <li>
+              <span class="now-cat">正在学</span>
+              <span class="now-item">AI Agent 工程化 — 把个人 Agent 流程跑通并复用到更多场景。</span>
+            </li>
+            <li>
+              <span class="now-cat">在建</span>
+              <span class="now-item">AI 聚合 × 万物联合 — 从工具清单起步，逐步加入项目机会。</span>
+            </li>
+            <li>
+              <span class="now-cat">在读</span>
+              <span class="now-item">《持续复盘》《Show Your Work》《Working in Public》— 边读边写读书卡。</span>
+            </li>
+            <li>
+              <span class="now-cat">在改</span>
+              <span class="now-item">自己的工作流：用 AI 把每周复盘 + 内容产出 + 项目管理连成一条线。</span>
+            </li>
+            <li>
+              <span class="now-cat">暂缓</span>
+              <span class="now-item">公众号 — 等节奏稳一点再恢复更新，先把内部系统跑好。</span>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- ====================== Projects ====================== -->
+      <section class="section container" id="projects" aria-labelledby="projects-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">Projects</p>
+            <h2 id="projects-title">在做的项目</h2>
+          </div>
+          <p class="section-heading-note">可以是写过的工具、跑过的实验、做过的小型产品。</p>
+        </header>
+
+        <div class="projects-grid reveal-stagger">
+          <article class="project-card">
+            <span class="project-num">PROJECT · 01</span>
+            <h3>个人入口站（本站）</h3>
+            <p>把成长复盘、资源、AI 工具、合作机会聚合到一处。当前版本 v0.3，纯静态、可写、可导出。</p>
+            <div class="project-tags">
+              <span>HTML/CSS</span>
+              <span>localStorage</span>
+              <span>零依赖</span>
+            </div>
+            <a class="project-link" href="#changelog">查看 changelog →</a>
+          </article>
+
+          <article class="project-card">
+            <span class="project-num">PROJECT · 02</span>
+            <h3>AI 聚合 × 万物联合</h3>
+            <p>聚合 AI 工具、实践案例和可联合的项目机会。下一阶段加协作池。</p>
+            <div class="project-tags">
+              <span>Vercel</span>
+              <span>即将开始</span>
+            </div>
+            <a class="project-link" href="./ai.html">进入 →</a>
+          </article>
+
+          <article class="project-card">
+            <span class="project-num">PROJECT · 03</span>
+            <h3>每周复盘系统</h3>
+            <p>把"周日傍晚 30 分钟"固化成可执行流程：模板 · 写 · 导出 · 下周预设。</p>
+            <div class="project-tags">
+              <span>个人方法论</span>
+              <span>工作流</span>
+            </div>
+            <a class="project-link" href="./growth.html">打开 →</a>
+          </article>
+
+          <article class="project-card">
+            <span class="project-num">PROJECT · 04</span>
+            <h3>Skill 工具集（侧线）</h3>
+            <p>把日常高频动作（读卡、复盘、生成图、搞链接）做成可复用单元，给 Agent 用。</p>
+            <div class="project-tags">
+              <span>Agent</span>
+              <span>工具</span>
+            </div>
+            <a class="project-link" href="#contact">一起做 →</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================== Skills 工具库（预览） ====================== -->
+      <section class="section container" id="skills" aria-labelledby="skills-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">Self-Media Tool Index</p>
+            <h2 id="skills-title">工具库 · 我在用的自媒体 Skills</h2>
+          </div>
+          <p class="section-heading-note">
+            Agent Skill / MCP Server / 配套工具 — 每个都有我自己的一段私货笔记。
+          </p>
+        </header>
+
+        <div class="skills-preview-grid reveal-stagger">
+          <article class="skills-preview-card risk-L1">
+            <div class="meta">
+              <span class="risk-pill risk-L1">Lv1</span>
+              <span class="stat-stars" style="color:var(--ink);font-family:var(--ff-mono);font-size:13px;font-weight:800;">★ 61k</span>
+            </div>
+            <h4>TrendRadar</h4>
+            <p>多平台热点监控，输出 MCP 给 Agent。每天早上跑一次喂给写作 Agent。</p>
+          </article>
+
+          <article class="skills-preview-card risk-L1">
+            <div class="meta">
+              <span class="risk-pill risk-L1">Lv1</span>
+              <span class="stat-stars" style="color:var(--ink);font-family:var(--ff-mono);font-size:13px;font-weight:800;">★ 24k</span>
+            </div>
+            <h4>baoyu-skills</h4>
+            <p>宝玉的 AI 写作 + 图文排版 skill 集合 — 中文写作场景最完整的之一。</p>
+          </article>
+
+          <article class="skills-preview-card risk-L3">
+            <div class="meta">
+              <span class="risk-pill risk-L3">Lv3</span>
+              <span class="stat-stars" style="color:var(--ink);font-family:var(--ff-mono);font-size:13px;font-weight:800;">★ 54k</span>
+            </div>
+            <h4>MediaCrawler</h4>
+            <p>抖音/小红书/B 站评论爬虫。强但 ToS 高压线 — 只用于自有账号 / 研究。</p>
+          </article>
+
+          <article class="skills-preview-card risk-L1">
+            <div class="meta">
+              <span class="risk-pill risk-L1">Lv1</span>
+              <span class="stat-stars" style="color:var(--ink);font-family:var(--ff-mono);font-size:13px;font-weight:800;">★ 42k</span>
+            </div>
+            <h4>OpenMontage</h4>
+            <p>开源剪辑自动化，剪映/PR 工程级操作。短视频工种必看。</p>
+          </article>
+
+          <article class="skills-preview-card risk-L1">
+            <div class="meta">
+              <span class="risk-pill risk-L1">Lv1</span>
+              <span class="stat-stars" style="color:var(--ink);font-family:var(--ff-mono);font-size:13px;font-weight:800;">★ 31k</span>
+            </div>
+            <h4>humanizer</h4>
+            <p>去 AI 味的改写 — 中文得再加一层，Claude 味比 GPT 味好压。</p>
+          </article>
+
+          <article class="skills-preview-card risk-L1">
+            <div class="meta">
+              <span class="risk-pill risk-L1">Lv1</span>
+              <span class="stat-stars" style="color:var(--ink);font-family:var(--ff-mono);font-size:13px;font-weight:800;">★ 3.3k</span>
+            </div>
+            <h4>md2wechat-skill</h4>
+            <p>Markdown → 公众号格式一键转换。blog 同步公众号必装的桥。</p>
+          </article>
+        </div>
+
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="button button-primary" href="./skills.html">看完整工具库 →</a>
+          <a class="button button-secondary" href="./skills.html#skills-legend">风险等级图例</a>
+        </div>
+      </section>
+
+      <!-- ====================== Stack ====================== -->
+      <section class="section-tight container" id="stack" aria-labelledby="stack-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">Stack</p>
+            <h2 id="stack-title">我用这些东西</h2>
+          </div>
+          <p class="section-heading-note">每天在用的，不打卡不捧不贬。</p>
+        </header>
+
+        <div class="stack-grid reveal-stagger">
+          <div class="stack-pill"><span class="stack-name">VS Code</span><span class="stack-type">编辑器</span></div>
+          <div class="stack-pill"><span class="stack-name">Vercel</span><span class="stack-type">部署</span></div>
+          <div class="stack-pill"><span class="stack-name">GitHub</span><span class="stack-type">代码托管</span></div>
+          <div class="stack-pill"><span class="stack-name">Notion</span><span class="stack-type">笔记 / 任务</span></div>
+          <div class="stack-pill"><span class="stack-name">Figma</span><span class="stack-type">设计</span></div>
+          <div class="stack-pill"><span class="stack-name">WorkBuddy</span><span class="stack-type">AI 助理</span></div>
+          <div class="stack-pill"><span class="stack-name">Agent Skills</span><span class="stack-type">自动化</span></div>
+          <div class="stack-pill"><span class="stack-name">Anthropic / OpenAI API</span><span class="stack-type">AI 模型</span></div>
+        </div>
+      </section>
+
+      <!-- ====================== Contact ====================== -->
+      <section class="section contact-section container" id="contact" aria-labelledby="contact-title">
+        <div class="contact-intro">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">联系我</h2>
+          <p>
+            如果你想聊 AI 工具、长期复盘、个人工作流、或者有项目想找人一起做 — 都欢迎。
+            我可能会慢，但一定会回。
+          </p>
+          <p class="contact-hint">添加微信请注明「来源：个人站」，优先回复合作 / 项目连接类消息。</p>
+
+          <div class="hero-actions" style="margin-top:24px;">
+            <a class="button button-primary" href="./contact.html">打开联系页</a>
+            <a class="button button-secondary" href="#changelog">看 changelog</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-text">
+            <p>当前状态</p>
+            <h3>开放交流、资源互换与项目连接</h3>
+          </div>
+
+          <div class="contact-actions">
+            <button
+              type="button"
+              class="button button-primary wechat-btn"
+              data-wechat="vxS1436005430"
+              aria-label="点击复制微信号"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M9.5 4C5.36 4 2 6.69 2 10c0 1.69.83 3.21 2.18 4.31L3.5 16l2.13-1.07c.6.18 1.24.31 1.92.36c-.03-.21-.05-.42-.05-.63c0-3.31 3.13-6 7-6c.21 0 .42.01.63.03C14.58 5.81 12.27 4 9.5 4Zm-2.25 3.5a.9.9 0 1 1 0 1.8a.9.9 0 0 1 0-1.8Zm4.5 0a.9.9 0 1 1 0 1.8a.9.9 0 0 1 0-1.8ZM14.5 10c-3.31 0-6 2.46-6 5.5c0 3.04 2.69 5.5 6 5.5c.66 0 1.3-.1 1.88-.27L18 22l-.55-1.71C19.18 19.27 20.5 17.5 20.5 15.5c0-3.04-2.69-5.5-6-5.5Zm-2 3a.8.8 0 1 1 0 1.6a.8.8 0 0 1 0-1.6Zm4 0a.8.8 0 1 1 0 1.6a.8.8 0 0 1 0-1.6Z"
+                />
+              </svg>
+              <span class="label-default">复制微信 vxS1436005430</span>
+              <span class="label-copied" aria-hidden="true">已复制 ✓</span>
+            </button>
+            <a class="button button-secondary" href="weixin://">在微信中打开</a>
+          </div>
+
+          <div class="contact-qr" aria-hidden="true">
+            <svg viewBox="0 0 25 25" width="80" height="80">
+              <rect width="25" height="25" fill="transparent" />
+              <g fill="#1a1612">
+                <rect x="0" y="0" width="7" height="7" /><rect x="2" y="2" width="3" height="3" fill="#fffdf7"/>
+                <rect x="18" y="0" width="7" height="7" /><rect x="20" y="2" width="3" height="3" fill="#fffdf7"/>
+                <rect x="0" y="18" width="7" height="7" /><rect x="2" y="20" width="3" height="3" fill="#fffdf7"/>
+                <rect x="10" y="1" width="1" height="1" /><rect x="12" y="1" width="1" height="1" /><rect x="14" y="1" width="1" height="1"/>
+                <rect x="11" y="3" width="2" height="1" /><rect x="14" y="3" width="2" height="1"/>
+                <rect x="11" y="5" width="1" height="2" /><rect x="13" y="5" width="2" height="1"/>
+                <rect x="1" y="10" width="1" height="1" /><rect x="3" y="10" width="1" height="2" /><rect x="5" y="10" width="2" height="1"/>
+                <rect x="8" y="10" width="1" height="3" /><rect x="10" y="10" width="2" height="2" /><rect x="13" y="10" width="1" height="1"/>
+                <rect x="15" y="10" width="2" height="1" /><rect x="18" y="10" width="1" height="2" /><rect x="20" y="10" width="1" height="1"/>
+                <rect x="22" y="10" width="2" height="2" />
+                <rect x="1" y="13" width="2" height="1" /><rect x="4" y="13" width="1" height="1" /><rect x="6" y="13" width="1" height="2"/>
+                <rect x="9" y="13" width="2" height="1" /><rect x="12" y="13" width="1" height="2" /><rect x="14" y="13" width="2" height="2"/>
+                <rect x="17" y="13" width="1" height="1" /><rect x="19" y="13" width="2" height="1" /><rect x="22" y="13" width="1" height="1"/>
+                <rect x="2" y="15" width="1" height="2" /><rect x="4" y="15" width="2" height="1" /><rect x="7" y="15" width="1" height="1"/>
+                <rect x="10" y="15" width="1" height="1" /><rect x="13" y="15" width="1" height="2" /><rect x="16" y="15" width="2" height="2"/>
+                <rect x="20" y="15" width="2" height="1" /><rect x="23" y="15" width="1" height="2" />
+                <rect x="1" y="18" width="1" height="2" /><rect x="3" y="18" width="2" height="1" /><rect x="6" y="18" width="1" height="3"/>
+                <rect x="8" y="18" width="2" height="2" /><rect x="11" y="18" width="2" height="1" /><rect x="14" y="18" width="1" height="1"/>
+                <rect x="16" y="18" width="1" height="2" /><rect x="18" y="18" width="2" height="1" /><rect x="21" y="18" width="1" height="2"/>
+                <rect x="23" y="18" width="1" height="1" />
+                <rect x="10" y="20" width="1" height="1" /><rect x="13" y="20" width="2" height="1" /><rect x="16" y="20" width="2" height="2"/>
+                <rect x="19" y="20" width="1" height="1" />
+                <rect x="11" y="22" width="2" height="2" /><rect x="14" y="22" width="1" height="1" /><rect x="17" y="22" width="1" height="1"/>
+                <rect x="20" y="22" width="2" height="1" /><rect x="23" y="22" width="1" height="2" />
+              </g>
+            </svg>
+            <span class="qr-caption">扫码占位</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== Changelog ====================== -->
+      <section class="section changelog-section container" id="changelog" aria-labelledby="changelog-title">
+        <header class="section-heading">
+          <div>
+            <p class="eyebrow">Changelog</p>
+            <h2 id="changelog-title">站点更新日志</h2>
+          </div>
+          <p class="section-heading-note">每一次改动都留痕 — 让成长可见。</p>
+        </header>
+
+        <ol class="changelog-list">
+          <li>
+            <div class="changelog-meta">
+              <span class="version-tag">v0.6</span>
+              <time datetime="2026-07-28">2026-07-28</time>
+              <span class="changelog-tag">密码锁 / 每日日记 / AI 主推</span>
+            </div>
+            <div class="changelog-body">
+              <h3>私人复盘锁屏 + AI 主推站置顶</h3>
+              <ul>
+                <li><strong>密码锁屏</strong>：成长复盘 <code>growth.html</code> 现在需要密码才能进 — 首次访问设密码（SHA-256 哈希 + 盐），session 内有效</li>
+                <li><strong>每日日记</strong>（Module 00）：按日颗粒度，每天写一条，写过的日期不能重复</li>
+                <li><strong>折叠按钮</strong>：每个 module section 头部右侧可折叠/展开，状态持久化</li>
+                <li><strong>AI 聚合 × 万物联合</strong>：第一个两个成为 hero 大卡（"中转切合" + "生图生视频"），其余排到下方列表</li>
+                <li><strong>主页 hero 下</strong>新增"前端展示 + 后端转化"显式说明卡，把转化漏斗讲清</li>
+                <li>成长复盘加 <code>noindex</code> meta — 不要被搜索引擎收录</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="changelog-meta">
+              <span class="version-tag">v0.5</span>
+              <time datetime="2026-07-28">2026-07-28</time>
+              <span class="changelog-tag">Dala Dark Mode</span>
+            </div>
+            <div class="changelog-body">
+              <h3>设计语言升级 · Dala Dark Mode</h3>
+              <ul>
+                <li>默认切到 <strong>暗色风</strong>：纯黑 #000000 虚空 + 电紫 #8052ff + 琥珀 #ffb829</li>
+                <li>display 大字号统一升到 113px / 78px（PPNeueMontreal scale）</li>
+                <li>title weight 改用 400，靠字号而非 bold 分层级（Dala signature）</li>
+                <li>body 字号 18px + weight 300（极轻）</li>
+                <li>所有圆角统一到 24px（Dala rule）</li>
+                <li>新增 <strong>Light / Dark 切换器</strong>（右上角 sun/moon 图标），Light 模式保留暖米黄</li>
+                <li>avatar placeholder 改成 violet，配 violet glow 阴影</li>
+                <li>404 / 所有子页面同步切换器</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="changelog-meta">
+              <span class="version-tag">v0.4</span>
+              <time datetime="2026-07-28">2026-07-28</time>
+              <span class="changelog-tag">工具库板块</span>
+            </div>
+            <div class="changelog-body">
+              <h3>新增「工具库」板块 · 自媒体 Skill 索引</h3>
+              <ul>
+                <li>独立子页面 <code>skills.html</code>，收纳 Agent Skill / MCP / 配套工具</li>
+                <li><strong>4 档风险</strong>（Lv1 开箱即用 → Lv4 慎用），用站点自有设计语言</li>
+                <li><strong>私货笔记</strong>：每条带一段我自己的使用经验 / 坑点 / 合规风险</li>
+                <li>多维筛选：分类 · 形态 · 风险 + 全文搜索 + 4 种排序</li>
+                <li>首页新增 Skills 预览区块，TOP 6 精选 + 直达完整列表</li>
+                <li>种子数据 25 条示例，全部可编辑/导入/导出 JSON</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="changelog-meta">
+              <span class="version-tag">v0.3</span>
+              <time datetime="2026-07-28">2026-07-28</time>
+              <span class="changelog-tag">设计语言升级</span>
+            </div>
+            <div class="changelog-body">
+              <h3>设计语言升级 · 全站 polish</h3>
+              <ul>
+                <li>完整 design token 体系（色板 / 间距 / 字号 / 圆角 / 阴影 / 动效）</li>
+                <li>引入 <strong>Noto Serif SC</strong> + Cormorant Garamond 做标题，Inter 做正文</li>
+                <li>新增 <strong>About · Now · Projects · Stack</strong> 四个新板块</li>
+                <li>主导航 sticky + <strong>scroll-spy</strong> 高亮当前 section</li>
+                <li>徽标渐变 · 卡片磁性 hover · 数字下落入场</li>
+                <li>完整 SEO：OG / Twitter Card / canonical / JSON-LD Person</li>
+                <li>完整 a11y：skip-link · focus-visible · aria · reduced-motion</li>
+                <li><strong>Modal 表单</strong> 替代 prompt 弹窗（更精细的输入体验）</li>
+                <li>新增：favicon · og-image · sitemap · robots · manifest · 404</li>
+                <li>子页面统一头部，并加入「← 主入口」回首页的快捷</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="changelog-meta">
+              <span class="version-tag">v0.2</span>
+              <time datetime="2026-07-28">2026-07-28</time>
+              <span class="changelog-tag">可写子页</span>
+            </div>
+            <div class="changelog-body">
+              <h3>4 个子页面 + 本地可写</h3>
+              <ul>
+                <li>首页 4 张入口卡片改为跳转独立子页面（growth / resources / ai / contact）</li>
+                <li>成长复盘：每周复盘 / 学习笔记 / 行动记录 / 阶段总结（嵌套大纲）</li>
+                <li>资源共享：AI 工具 / 学习资源 / 效率模板 / 实用链接，每条可增删改</li>
+                <li>AI 聚合：留 2 个网站位，点卡片跳转你自己的另一个站</li>
+                <li>每个子页面支持导出 / 导入 JSON 做备份和迁移</li>
+                <li>所有数据存浏览器 localStorage（v0.3 升级 UX：真 Modal）</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="changelog-meta">
+              <span class="version-tag">v0.1</span>
+              <time datetime="2026-07-28">2026-07-28</time>
+              <span class="changelog-tag">首发</span>
+            </div>
+            <div class="changelog-body">
+              <h3>入口站正式上线</h3>
+              <ul>
+                <li>首版结构完成：四大入口 + 详情区块</li>
+                <li>微信联系按钮支持一键复制</li>
+                <li>响应式适配：980px / 620px 两个断点</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-mark">
+        <span class="brand-mark" aria-hidden="true" style="width:32px;height:32px;font-size:14px;">麒</span>
+        <span>麒麟 · 一个持续努力的人</span>
+      </div>
+      <nav class="footer-links" aria-label="辅助导航">
+        <a href="#entries">四个入口</a>
+        <a href="#about">关于</a>
+        <a href="#skills">工具库</a>
+        <a href="#changelog">更新日志</a>
+        <a href="./contact.html">联系我</a>
+        <a href="https://github.com/sll521000/-" target="_blank" rel="noopener noreferrer">源代码</a>
+      </nav>
+      <p>© 2026 麒麟 · Built for continuous effort.</p>
+    </footer>
+
+    <button class="back-top" type="button" id="back-top" aria-label="回到顶部">↑</button>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      /* ===== Theme ===== */
+      const root = document.documentElement;
+      const THEME_KEY = "qilin.theme";
+      const stored = localStorage.getItem(THEME_KEY);
+      const systemLight = matchMedia("(prefers-color-scheme: light)").matches;
+      const initial = stored || (systemLight ? "light" : "");
+      if (initial) root.setAttribute("data-theme", initial);
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const cur = root.getAttribute("data-theme") === "light" ? "light" : "";
+        const next = cur === "light" ? "" : "light";
+        if (next) root.setAttribute("data-theme", next);
+        else root.removeAttribute("data-theme");
+        localStorage.setItem(THEME_KEY, next);
+      });
+
+      /* ===== Toast ===== */
+      const toastEl = document.getElementById("toast");
+      let toastTimer;
+      const toast = (msg) => {
+        toastEl.textContent = msg;
+        toastEl.classList.add("is-visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 2000);
+      };
+
+      /* ===== 微信号复制 ===== */
+      document.querySelector(".wechat-btn")?.addEventListener("click", async () => {
+        const btn = document.querySelector(".wechat-btn");
+        const value = btn.dataset.wechat || "";
+        const fallback = () => {
+          const t = document.createElement("textarea");
+          t.value = value;
+          t.style.position = "fixed";
+          t.style.opacity = "0";
+          document.body.appendChild(t);
+          t.select();
+          let ok = false;
+          try { ok = document.execCommand("copy"); } catch (_) {}
+          document.body.removeChild(t);
+          return ok;
+        };
+        let ok = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+            ok = true;
+          } else ok = fallback();
+        } catch (_) {
+          ok = fallback();
+        }
+        if (ok) {
+          btn.classList.add("is-copied");
+          toast("微信号已复制到剪贴板");
+          setTimeout(() => btn.classList.remove("is-copied"), 1800);
+        } else toast("复制失败，请手动选中");
+      });
+
+      /* ===== IntersectionObserver: reveal & scroll-spy ===== */
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            revealIO.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => revealIO.observe(el));
+
+      const sections = ["entries", "about", "now", "projects", "skills", "changelog"]        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      const navLinks = document.querySelectorAll("[data-nav]");
+      const setActive = (id) => {
+        navLinks.forEach((a) => {
+          if (a.getAttribute("href") === "#" + id) a.classList.add("is-active");
+          else a.classList.remove("is-active");
+        });
+      };
+      const spy = new IntersectionObserver((entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, { rootMargin: "-40% 0px -50% 0px" });
+      sections.forEach((s) => spy.observe(s));
+
+      /* ===== Back to top ===== */
+      const backTop = document.getElementById("back-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 600) backTop.classList.add("is-visible");
+        else backTop.classList.remove("is-visible");
+      }, { passive: true });
+      backTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      /* ===== Nav toggle (mobile) — 简易占位，未来展开 ===== */
+      const navToggle = document.querySelector(".nav-toggle");
+      navToggle?.addEventListener("click", () => {
+        const nav = document.querySelector(".nav");
+        const isOpen = nav.style.display === "flex";
+        nav.style.display = isOpen ? "" : "flex";
+        navToggle.setAttribute("aria-expanded", String(!isOpen));
+      });
+    </script>
+  </body>
+</html>

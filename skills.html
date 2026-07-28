@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="麒麟的自媒体工具库 — Agent Skills / MCP / 配套工具的可写清单，按风险等级 + 我的私货笔记挑选。"
+    />
+    <meta name="theme-color" content="#f5f1e8" />
+
+    <title>工具库 · 麒麟</title>
+    <link rel="canonical" href="https://qilin-portfolio.vercel.app/skills.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="工具库 · 麒麟" />
+    <meta property="og:description" content="自媒体 Skills / MCP / 配套工具的风险化清单。" />
+    <meta property="og:url" content="https://qilin-portfolio.vercel.app/skills.html" />
+    <meta property="og:image" content="./og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+SC:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="skills">
+    <a href="#main" class="skip-link">跳到正文</a>
+
+    <header class="site-header" role="banner">
+      <a class="brand" href="./index.html" aria-label="麒麟 · 回到首页">
+        <span class="brand-mark" aria-hidden="true">麒</span>
+        <span>麒麟</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="./index.html#entries" data-nav>四个入口</a>
+        <a href="./index.html#about" data-nav>关于</a>
+        <a href="./index.html#now" data-nav>现在</a>
+        <a href="./skills.html" data-nav>工具库</a>
+      </nav>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="theme-toggle" type="button" aria-label="切换主题" id="theme-toggle">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <a class="header-cta" href="./index.html">← 主入口</a>
+      </div>
+    </header>
+
+    <main id="main" class="subpage">
+      <section class="section subpage-hero container">
+        <p class="eyebrow">Self-Media Skill Index · 持续更新</p>
+        <h1>工具库</h1>
+        <p class="subpage-lede">
+          自媒体领域的 Agent Skills / MCP Servers / 配套工具清单。
+          每个项目都附上一段我自己的使用笔记 —— 这是与一般 awesome-list 的差别。
+        </p>
+        <div class="subpage-meta">
+          <span class="meta-pill"><span class="dot"></span>数据本地保存 · 可编辑</span>
+          <button class="meta-btn" id="sk-export" type="button">↧ 导出 JSON</button>
+          <label class="meta-btn meta-btn-input">↥ 批量导入<input type="file" id="sk-import" accept="application/json" hidden /></label>
+          <button class="meta-btn" id="sk-add" type="button" style="background:var(--ink);color:var(--paper);border-color:var(--ink);">+ 新增</button>
+        </div>
+      </section>
+
+      <!-- 工具区 -->
+      <section class="section container" id="skills-list-wrap">
+        <div class="skills-toolbar">
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="search" id="sk-search" class="search-input" placeholder="搜名字 / 作者 / 笔记…" aria-label="搜索" />
+          </div>
+        </div>
+
+        <div class="skills-filter" role="region" aria-label="筛选">
+          <div class="filter-group">
+            <span class="filter-group-label">分类</span>
+            <button type="button" class="filter-chip is-active" data-cat="all">全部</button>
+            <button type="button" class="filter-chip" data-cat="topic">选题/舆情</button>
+            <button type="button" class="filter-chip" data-cat="data">数据抓取</button>
+            <button type="button" class="filter-chip" data-cat="video">视频全流程</button>
+            <button type="button" class="filter-chip" data-cat="avatar">数字人/配音</button>
+            <button type="button" class="filter-chip" data-cat="design">图文排版</button>
+            <button type="button" class="filter-chip" data-cat="write">公众号</button>
+            <button type="button" class="filter-chip" data-cat="seo">SEO/选题</button>
+            <button type="button" class="filter-chip" data-cat="distrib">多平台分发</button>
+            <button type="button" class="filter-chip" data-cat="comply">合规/敏感词</button>
+            <button type="button" class="filter-chip" data-cat="audio">播客/音频</button>
+            <button type="button" class="filter-chip" data-cat="clone">人格克隆</button>
+            <button type="button" class="filter-chip" data-cat="other">辅助</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-group-label">形态</span>
+            <button type="button" class="filter-chip is-active" data-form="all">全部</button>
+            <button type="button" class="filter-chip" data-form="skill"><span class="filter-dot" style="background:var(--accent);"></span>Agent Skill</button>
+            <button type="button" class="filter-chip" data-form="mcp"><span class="filter-dot" style="background:var(--accent-2);"></span>MCP Server</button>
+            <button type="button" class="filter-chip" data-form="tool"><span class="filter-dot" style="background:var(--gold);"></span>配套工具</button>
+          </div>
+          <div class="filter-group">
+            <span class="filter-group-label">风险</span>
+            <button type="button" class="filter-chip is-active" data-risk="all">全部</button>
+            <button type="button" class="filter-chip risk-L1" data-risk="L1"><span class="filter-dot" style="background:#2c8c6f;"></span>Lv1 开箱即用</button>
+            <button type="button" class="filter-chip risk-L2" data-risk="L2"><span class="filter-dot" style="background:#c08a18;"></span>Lv2 需 key</button>
+            <button type="button" class="filter-chip risk-L3" data-risk="L3"><span class="filter-dot" style="background:#b95e32;"></span>Lv3 高门槛</button>
+            <button type="button" class="filter-chip risk-L4" data-risk="L4"><span class="filter-dot" style="background:#555152;"></span>Lv4 慎用</button>
+          </div>
+        </div>
+
+        <div class="skills-result-meta">
+          <span>共 <strong id="sk-count">0</strong> 条 · 当前显示 <strong id="sk-shown">0</strong> 条</span>
+          <div>
+            排序：
+            <select class="skills-sort" id="sk-sort" aria-label="排序">
+              <option value="stars-desc">★ 数从高到低</option>
+              <option value="stars-asc">★ 数从低到高</option>
+              <option value="date-desc">更新从新到旧</option>
+              <option value="date-asc">更新从旧到新</option>
+              <option value="added-asc">我添加顺序</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="skills-grid" id="skills-grid"></div>
+        <p class="empty-hint" id="skills-empty" hidden>当前筛选下没有条目。换个关键词或风险试试。</p>
+
+        <div class="skills-legend" aria-label="风险图例">
+          <strong>风险等级说明</strong>
+          <span><span class="risk-pill risk-L1" style="--risk-color:#2c8c6f;">Lv 1</span> 开箱即用，零依赖 / 无登录态</span>
+          <span><span class="risk-pill risk-L2" style="--risk-color:#c08a18;">Lv 2</span> 需 API Key 或外部服务</span>
+          <span><span class="risk-pill risk-L3" style="--risk-color:#b95e32;">Lv 3</span> 需账号/登录态，有 ToS 风险</span>
+          <span><span class="risk-pill risk-L4" style="--risk-color:#555152;">Lv 4</span> 已停更 或 非主流形态，需谨慎</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-mark">
+        <span class="brand-mark" aria-hidden="true" style="width:32px;height:32px;font-size:14px;">麒</span>
+        <span>麒麟 · 工具库</span>
+      </div>
+      <nav class="footer-links" aria-label="辅助导航">
+        <a href="./index.html">首页</a>
+        <a href="./growth.html">成长复盘</a>
+        <a href="./resources.html">资源共享</a>
+        <a href="./ai.html">AI 聚合</a>
+        <a href="./contact.html">联系</a>
+      </nav>
+      <p>© 2026 麒麟 · Built for continuous effort.</p>
+    </footer>
+
+    <button class="back-top" type="button" id="back-top" aria-label="回到顶部">↑</button>
+
+    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal" role="document">
+        <div class="modal-header">
+          <h3 id="modal-title">编辑</h3>
+          <button class="modal-close" type="button" data-close aria-label="关闭">×</button>
+        </div>
+        <form id="modal-form" class="modal-body" autocomplete="off"></form>
+        <div class="modal-footer">
+          <button type="button" class="button button-ghost" data-close>取消</button>
+          <button type="submit" form="modal-form" class="button button-primary" id="modal-submit">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      /* ============ Theme ============ */
+      const _root = document.documentElement;
+      const _stored = localStorage.getItem("qilin.theme");
+      const _initial = _stored || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "");
+      if (_initial) _root.setAttribute("data-theme", _initial);
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const isLight = _root.getAttribute("data-theme") === "light";
+        if (isLight) _root.removeAttribute("data-theme");
+        else _root.setAttribute("data-theme", "light");
+        localStorage.setItem("qilin.theme", isLight ? "" : "light");
+      });
+
+      /* ============ 种子数据（示例） ============ */
+      const SEED = [
+        // 选题 / 舆情
+        { name: "TrendRadar", by: "sansan0", url: "https://github.com/sansan0/TrendRadar",
+          desc: "多平台热点监控与聚合，输出 MCP 给 Agent 取用。",
+          note: "我自己每天早上跑一次，把当日热榜塞给写作 Agent 当 prompt。配置曲线最低。",
+          stars: 61000, date: "2026-07", category: "topic", form: "tool", risk: "L1" },
+        { name: "ai-trend-publish", by: "liyown", url: "https://github.com/liyown/ai-trend-publish",
+          desc: "AI 选题 + 一键发布到多平台。",
+          note: "更像半成品框架 — 如果你要做'内容流水线'的起点不错，但发布环节注意 ToS。",
+          stars: 3100, date: "2026-05", category: "topic", form: "skill", risk: "L2" },
+
+        // 数据抓取
+        { name: "MediaCrawler", by: "NanmiCoder", url: "https://github.com/NanmiCoder/MediaCrawler",
+          desc: "抖音 / 小红书 / B 站 / 快手评论爬虫。",
+          note: "非常强但请只用于自有账号 / 研究 — 不要乱爬。ToS 高压线。",
+          stars: 54000, date: "2026-06", category: "data", form: "tool", risk: "L3" },
+        { name: "xiaohongshu-mcp", by: "xpzouying", url: "https://github.com/xpzouying/xiaohongshu-mcp",
+          desc: "把小红书搜索 + 内容读取封装成 MCP。",
+          note: "MCP 接口干净，但底层一样有反爬问题，备用方案别只靠这一个。",
+          stars: 15000, date: "2026-06", category: "data", form: "mcp", risk: "L3" },
+        { name: "douyin-mcp-server", by: "yzfly", url: "https://github.com/yzfly/douyin-mcp-server",
+          desc: "抖音数据 MCP 接口。",
+          note: "上游已 archived（2024 起），能跑但不再维护。生产慎用。",
+          stars: 1200, date: "2024-08", category: "data", form: "mcp", risk: "L4" },
+
+        // 视频全流程
+        { name: "OpenMontage", by: "calesthio", url: "https://github.com/calesthio/OpenMontage",
+          desc: "开源剪辑自动化，剪映/PR 工程文件级操作。",
+          note: "对短视频工种是必看。但需要剪映桌面端 — mac 用户注意路径。",
+          stars: 42400, date: "2026-07", category: "video", form: "tool", risk: "L1" },
+        { name: "chengfeng-videocut-skills", by: "Agentchengfeng", url: "https://github.com/Agentchengfeng/chengfeng-videocut-skills",
+          desc: "自然语言驱动剪辑的 Agent Skill。",
+          note: "Skill 写得挺周到，但'叙事剪辑'效果还得手工调整 — 别期待一键成片。",
+          stars: 2700, date: "2026-04", category: "video", form: "skill", risk: "L1" },
+        { name: "video-editing-skill", by: "6missedcalls", url: "https://github.com/6missedcalls/video-editing-skill",
+          desc: "轻量视频剪辑 skill，剪映 API 封装。",
+          note: "试过基础场景 OK — 但工具链脆弱，建议先小范围验证再上生产。",
+          stars: 19, date: "2026-03", category: "video", form: "skill", risk: "L2" },
+
+        // 数字人
+        { name: "Duix.Heygem", by: "duixcom", url: "https://github.com/duixcom/Duix.Heygem",
+          desc: "开源本地数字人，对标 HeyGen。",
+          note: "本地跑需要好显卡 — 我用 4090 能跑得很稳，CPU 别想。声音得自己克隆。",
+          stars: 14200, date: "2026-05", category: "avatar", form: "tool", risk: "L2" },
+        { name: "rachel-digital-human-production", by: "rachel", url: "https://github.com/rachel-digital-human-production",
+          desc: "Rachel 数字人生产 skill 全流程。",
+          note: "小众但你要是做播客/口播，这是一个值得看的完整 chain。",
+          stars: 270, date: "2026-04", category: "avatar", form: "skill", risk: "L2" },
+
+        // 图文排版
+        { name: "baoyu-skills", by: "JimLiu", url: "https://github.com/JimLiu/baoyu-skills",
+          desc: "宝玉的 AI 写作 + 图文排版 skill 集合。",
+          note: "中文写作场景最完整的 skill 之一，作者亲自维护，社区讨论密度高。",
+          stars: 24200, date: "2026-07", category: "design", form: "skill", risk: "L1" },
+        { name: "huashu-design", by: "alchaincyf", url: "https://github.com/alchaincyf/huashu-design",
+          desc: "图解式文章配图自动化 skill。",
+          note: "适合图文长文。把 OpenAI 图像 API 包成了 Skill，开箱即用。",
+          stars: 22100, date: "2026-06", category: "design", form: "skill", risk: "L1" },
+        { name: "gzh-design-skill", by: "isjiamu", url: "https://github.com/isjiamu/gzh-design-skill",
+          desc: "公众号排版全套：封面 / 卡片 / 配色。",
+          note: "我在做公众号文章时常用的 assistant。提效明显，但小图标记得自己再过一遍。",
+          stars: 2500, date: "2026-05", category: "design", form: "skill", risk: "L1" },
+
+        // 公众号
+        { name: "md2wechat-skill", by: "geekjourneyx", url: "https://github.com/geekjourneyx/md2wechat-skill",
+          desc: "Markdown 转公众号格式 + 一键排版。",
+          note: "如果你写 Markdown blog → 公众号，这是必装的桥。",
+          stars: 3300, date: "2026-06", category: "write", form: "skill", risk: "L1" },
+        { name: "wewrite", by: "oaker-io", url: "https://github.com/oaker-io/wewrite",
+          desc: "AI 公众号编辑器，开源。",
+          note: "思路值得关注 — 但生产部署需要二次开发，作者也承认尚不完整。",
+          stars: 2900, date: "2026-05", category: "write", form: "skill", risk: "L2" },
+
+        // 去 AI 味
+        { name: "humanizer", by: "blader", url: "https://github.com/blader/humanizer",
+          desc: "去 AI 味的改写 skill。",
+          note: "英文效果显著，中文需要再加一层 prompt。Claude 的味道比 GPT 的味道更好压。",
+          stars: 31000, date: "2026-07", category: "write", form: "skill", risk: "L1" },
+        { name: "Humanizer-zh", by: "op7418", url: "https://github.com/op7418/Humanizer-zh",
+          desc: "中文场景的去 AI 味改写 skill。",
+          note: "比 blader 那个更适合中文，可以两个组合用：先用 Humanizer-zh，再用 blader 兜底。",
+          stars: 14000, date: "2026-07", category: "write", form: "skill", risk: "L1" },
+
+        // SEO / 选题
+        { name: "marketingskills", by: "coreyhaines31", url: "https://github.com/coreyhaines31/marketingskills",
+          desc: "营销 + SEO 全套 skill。",
+          note: "英文 SEO 思路很系统，中文场景要避免硬套 — 但模板值得读。",
+          stars: 42000, date: "2026-07", category: "seo", form: "skill", risk: "L1" },
+        { name: "ai-topic-scout", by: "Jingyi-Wu-Richael", url: "https://github.com/Jingyi-Wu-Richael/ai-topic-scout",
+          desc: "AI 选题侦察兵。",
+          note: "很轻的 skill，对接几个趋势 API。适合每天定时跑。",
+          stars: 20, date: "2026-05", category: "seo", form: "skill", risk: "L2" },
+
+        // 多平台分发
+        { name: "Wechatsync", by: "wechatsync", url: "https://github.com/wechatsync/Wechatsync",
+          desc: "公众号文章一键同步到多平台。",
+          note: "做分发矩阵的入门工具 — 长文 → 头条 / 知乎 / CSDN 都行。注意目标站 ToS。",
+          stars: 6100, date: "2026-06", category: "distrib", form: "tool", risk: "L2" },
+        { name: "XiaohongshuSkills", by: "white0dew", url: "https://github.com/white0dew/XiaohongshuSkills",
+          desc: "小红书相关的 skill 集合。",
+          note: "集合型仓库，质量参差 — 用前一定先看 issues。",
+          stars: 3200, date: "2026-04", category: "distrib", form: "skill", risk: "L3" },
+
+        // 合规
+        { name: "self-media-compliance-review", by: "JuneYaooo", url: "https://github.com/JuneYaooo/self-media-compliance-review",
+          desc: "合规审查 skill，覆盖各平台敏感词。",
+          note: "做发布前最后一道闸门。但不要 100% 信赖 — 平台规则随时变。",
+          stars: 51, date: "2026-05", category: "comply", form: "skill", risk: "L1" },
+        { name: "douyin-rule-check", by: "Jingyi-Wu-Richael", url: "https://github.com/Jingyi-Wu-Richael/douyin-rule-check",
+          desc: "抖音平台规则匹配检查。",
+          note: "挺轻，专注抖音。和上面那个可以互补。",
+          stars: 41, date: "2026-06", category: "comply", form: "skill", risk: "L1" },
+
+        // 播客
+        { name: "chubbyskills", by: "chubbyguan", url: "https://github.com/chubbyguan/chubbyskills",
+          desc: "Chubby 的多面 skill 集合，含播客转录。",
+          note: "作者活跃，作者视角经常给一些非主流但好用的方法论。",
+          stars: 575, date: "2026-04", category: "audio", form: "skill", risk: "L2" },
+        { name: "claude-skill-podcast", by: "sgasser", url: "https://github.com/sgasser/claude-skill-podcast",
+          desc: "播客 skill 模板。",
+          note: "更适合当 template 学 — 自己 fork 改。仓库不大活跃。",
+          stars: 13, date: "2025-12", category: "audio", form: "skill", risk: "L4" },
+
+        // 人格克隆
+        { name: "immortal-skill", by: "agenmod", url: "https://github.com/agenmod/immortal-skill",
+          desc: "人格克隆 / 数字永生方向实验。",
+          note: "思路有意思 — 用 LLM 还原一个人的说话方式。注意伦理边界，不是工具滥用。",
+          stars: 888, date: "2026-05", category: "clone", form: "skill", risk: "L2" },
+        { name: "renwei-writing", by: "orange2ai", url: "https://github.com/orange2ai/renwei-writing",
+          desc: "人格化写作 skill。",
+          note: "中文人格写作场景值得参考。",
+          stars: 954, date: "2026-04", category: "clone", form: "skill", risk: "L1" },
+      ];
+
+      /* ============ Storage ============ */
+      const STORE = "qilin.skills.items";
+      const SEED_FLAG = "qilin.skills.seeded";
+      const load = (k) => { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } };
+      const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+      const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      const today = () => new Date().toISOString().slice(0, 10);
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const fmtStars = (n) => {
+        if (typeof n !== "number") return "—";
+        if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k";
+        return String(n);
+      };
+
+      /* Bootstrap seed once */
+      if (!localStorage.getItem(SEED_FLAG)) {
+        const seeded = SEED.map((s, i) => ({ id: uid(), addedAt: Date.now() + i, ...s }));
+        save(STORE, seeded);
+        localStorage.setItem(SEED_FLAG, "1");
+      }
+
+      /* ============ Toast ============ */
+      const toastEl = document.getElementById("toast");
+      let toastTimer;
+      const toast = (msg) => {
+        toastEl.textContent = msg;
+        toastEl.classList.add("is-visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 1800);
+      };
+
+      /* ============ Modal ============ */
+      const modalEl = document.getElementById("modal");
+      const modalForm = document.getElementById("modal-form");
+      const modalTitle = document.getElementById("modal-title");
+      let modalSubmitFn = null;
+      const openModal = ({ title, fields, values = {}, submitLabel = "保存", onSubmit }) => {
+        modalTitle.textContent = title;
+        modalForm.innerHTML = "";
+        fields.forEach((f) => {
+          const id = "field-" + f.name;
+          const wrap = document.createElement("div");
+          wrap.className = "field";
+          const label = document.createElement("label");
+          label.className = "field-label";
+          label.setAttribute("for", id);
+          label.textContent = f.label + (f.required ? " *" : "");
+          wrap.appendChild(label);
+          let input;
+          if (f.type === "textarea") {
+            input = document.createElement("textarea");
+            input.className = "textarea";
+          } else if (f.type === "select") {
+            input = document.createElement("select");
+            input.className = "select-modal";
+            (f.options || []).forEach((o) => {
+              const opt = document.createElement("option");
+              opt.value = o.value;
+              opt.textContent = o.label;
+              if (String(values[f.name]) === String(o.value)) opt.selected = true;
+              input.appendChild(opt);
+            });
+          } else {
+            input = document.createElement("input");
+            input.className = "input";
+            input.type = f.type || "text";
+          }
+          input.id = id;
+          input.name = f.name;
+          if (f.placeholder) input.placeholder = f.placeholder;
+          if (f.required) input.required = true;
+          const v = values[f.name];
+          if (v !== undefined && f.type !== "select") input.value = v ?? "";
+          wrap.appendChild(input);
+          if (f.hint) {
+            const hint = document.createElement("div");
+            hint.className = "field-hint";
+            hint.textContent = f.hint;
+            wrap.appendChild(hint);
+          }
+          modalForm.appendChild(wrap);
+        });
+        document.getElementById("modal-submit").textContent = submitLabel;
+        modalSubmitFn = onSubmit;
+        modalEl.hidden = false;
+        requestAnimationFrame(() => modalEl.classList.add("is-open"));
+        const first = modalForm.querySelector("input, textarea, select");
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeModal = () => {
+        modalEl.classList.remove("is-open");
+        setTimeout(() => { modalEl.hidden = true; }, 240);
+      };
+      modalEl.addEventListener("click", (ev) => {
+        if (ev.target === modalEl) closeModal();
+        if (ev.target.closest("[data-close]")) closeModal();
+      });
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && modalEl.classList.contains("is-open")) closeModal();
+      });
+      modalForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const data = Object.fromEntries(new FormData(modalForm).entries());
+        if (modalSubmitFn) modalSubmitFn(data);
+        closeModal();
+      });
+
+      /* ============ 字段配置 ============ */
+      const FIELDS = [
+        { name: "name", label: "名字", type: "text", required: true },
+        { name: "by", label: "作者 / 维护者", type: "text" },
+        { name: "url", label: "GitHub / 主页链接", type: "url", required: true, placeholder: "https://github.com/..." },
+        { name: "desc", label: "一句话功能描述", type: "textarea", required: true },
+        { name: "note", label: "我的私货笔记", type: "textarea", placeholder: "使用建议 / 坑点 / 合规风险 / 与其他 skill 的对比..." },
+        { name: "stars", label: "Star 数（数字）", type: "number", placeholder: "留空 = 未知" },
+        { name: "date", label: "更新月份 (YYYY-MM)", type: "text", placeholder: "2026-07" },
+        { name: "form", label: "形态", type: "select", required: true, options: [
+          { value: "skill", label: "Agent Skill" },
+          { value: "mcp",   label: "MCP Server" },
+          { value: "tool",  label: "配套工具" },
+        ]},
+        { name: "risk", label: "风险等级", type: "select", required: true, options: [
+          { value: "L1", label: "Lv 1 · 开箱即用" },
+          { value: "L2", label: "Lv 2 · 需 key / 依赖" },
+          { value: "L3", label: "Lv 3 · 需账号 / 有 ToS 风险" },
+          { value: "L4", label: "Lv 4 · 慎用 / 已停更" },
+        ]},
+        { name: "category", label: "分类", type: "select", required: true, options: [
+          { value: "topic",   label: "选题 / 舆情" },
+          { value: "data",    label: "数据抓取" },
+          { value: "video",   label: "视频全流程" },
+          { value: "avatar",  label: "数字人 / 配音" },
+          { value: "design",  label: "图文排版 / 封面" },
+          { value: "write",   label: "公众号写作" },
+          { value: "seo",     label: "SEO / 选题" },
+          { value: "distrib", label: "多平台分发" },
+          { value: "comply",  label: "合规 / 敏感词" },
+          { value: "audio",   label: "播客 / 音频" },
+          { value: "clone",   label: "人格克隆" },
+          { value: "other",   label: "辅助工具" },
+        ]},
+      ];
+
+      /* ============ 筛选 / 排序状态 ============ */
+      const state = { q: "", cat: "all", form: "all", risk: "all", sort: "stars-desc" };
+
+      /* ============ 渲染 ============ */
+      function formatStarsLabel(n) {
+        if (typeof n !== "number" || isNaN(n)) return "—";
+        if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k";
+        return String(n);
+      }
+      function riskLabel(r) {
+        return ({ L1: "Lv 1 开箱即用", L2: "Lv 2 需 key", L3: "Lv 3 高门槛", L4: "Lv 4 慎用" }[r] || r);
+      }
+      function catLabel(c) {
+        return ({ topic: "选题/舆情", data: "数据抓取", video: "视频", avatar: "数字人", design: "图文", write: "公众号", seo: "SEO", distrib: "分发", comply: "合规", audio: "音频", clone: "人格", other: "辅助" }[c] || c);
+      }
+      function formLabel(f) {
+        return ({ skill: "Agent Skill", mcp: "MCP Server", tool: "配套工具" }[f] || f);
+      }
+
+      function render() {
+        const items = load(STORE);
+        const filtered = items.filter((it) => {
+          if (state.cat !== "all" && it.category !== state.cat) return false;
+          if (state.form !== "all" && it.form !== state.form) return false;
+          if (state.risk !== "all" && it.risk !== state.risk) return false;
+          if (state.q) {
+            const q = state.q.toLowerCase();
+            if (!((it.name || "").toLowerCase().includes(q)
+              || (it.by || "").toLowerCase().includes(q)
+              || (it.desc || "").toLowerCase().includes(q)
+              || (it.note || "").toLowerCase().includes(q))) return false;
+          }
+          return true;
+        });
+
+        const sorted = filtered.slice().sort((a, b) => {
+          switch (state.sort) {
+            case "stars-asc":  return (a.stars || 0) - (b.stars || 0);
+            case "stars-desc": return (b.stars || 0) - (a.stars || 0);
+            case "date-asc":   return (a.date || "").localeCompare(b.date || "");
+            case "date-desc":  return (b.date || "").localeCompare(a.date || "");
+            case "added-asc":  return (a.addedAt || 0) - (b.addedAt || 0);
+          }
+          return 0;
+        });
+
+        document.getElementById("sk-count").textContent = items.length;
+        document.getElementById("sk-shown").textContent = sorted.length;
+
+        const grid = document.getElementById("skills-grid");
+        const empty = document.getElementById("skills-empty");
+        grid.innerHTML = "";
+        if (!sorted.length) { empty.hidden = false; return; }
+        empty.hidden = true;
+
+        sorted.forEach((it, idx) => {
+          const card = document.createElement("article");
+          card.className = `skill-card risk-${it.risk || "L1"}`;
+          const safeUrl = esc(it.url || "#");
+          card.innerHTML = `
+            <header class="skill-head">
+              <div class="skill-meta">
+                <span class="skill-num">${String(idx + 1).padStart(2, "0")}</span>
+                <span class="risk-pill risk-${it.risk || "L1"}" title="${esc(riskLabel(it.risk))}">${esc(it.risk || "L1")}</span>
+                <span class="form-pill">${esc(formLabel(it.form))}</span>
+                <span class="cat-pill">${esc(catLabel(it.category))}</span>
+              </div>
+              <div class="skill-actions">
+                <button type="button" data-act="edit">编辑</button>
+                <button type="button" data-act="del">删除</button>
+              </div>
+            </header>
+            <h3><a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${esc(it.name || "(未命名)")}</a></h3>
+            ${it.by ? `<div class="skill-by">@${esc(it.by)}</div>` : ""}
+            <p class="skill-desc">${esc(it.desc || "")}</p>
+            ${it.note ? `<p class="skill-note">${esc(it.note)}</p>` : ""}
+            <div class="skill-stats">
+              <span class="stat-stars">★ ${esc(formatStarsLabel(it.stars))}</span>
+              <span>·</span>
+              <span class="stat-date">${esc(it.date || "—")}</span>
+            </div>
+          `;
+          card.querySelector('[data-act="edit"]').onclick = () => editItem(it.id);
+          card.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条？")) {
+              save(STORE, load(STORE).filter((x) => x.id !== it.id));
+              render();
+              toast("已删除");
+            }
+          };
+          grid.appendChild(card);
+        });
+      }
+
+      function editItem(id) {
+        const cur = load(STORE).find((x) => x.id === id);
+        if (!cur) return;
+        openModal({
+          title: "编辑 工具",
+          fields: FIELDS,
+          values: cur,
+          onSubmit: (data) => {
+            const all = load(STORE);
+            const idx = all.findIndex((x) => x.id === id);
+            data.stars = data.stars ? Number(data.stars) : null;
+            all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+            save(STORE, all);
+            render();
+            toast("已保存");
+          },
+        });
+      }
+
+      function addItem() {
+        openModal({
+          title: "新增 工具",
+          fields: FIELDS,
+          values: { stars: 0, date: new Date().toISOString().slice(0, 7), form: "skill", risk: "L1", category: "other" },
+          submitLabel: "添加",
+          onSubmit: (data) => {
+            const items = load(STORE);
+            items.push({ id: uid(), ...data, stars: data.stars ? Number(data.stars) : null, addedAt: Date.now() });
+            save(STORE, items);
+            render();
+            toast("已新增");
+          },
+        });
+      }
+
+      /* ============ Export / Import ============ */
+      document.getElementById("sk-export").onclick = () => {
+        const dump = { [STORE]: load(STORE) };
+        const blob = new Blob([JSON.stringify(dump, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `qilin-skills-${today()}.json`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        toast("已导出 JSON");
+      };
+      document.getElementById("sk-import").onchange = async (ev) => {
+        const f = ev.target.files[0];
+        if (!f) return;
+        if (!confirm("导入会覆盖当前所有工具条目。继续？")) return;
+        try {
+          const txt = await f.text();
+          const dump = JSON.parse(txt);
+          let arr = null;
+          if (Array.isArray(dump[STORE])) arr = dump[STORE];
+          else if (Array.isArray(dump)) arr = dump;
+          if (!arr) throw new Error("格式不对");
+          // 给每条补 id / addedAt
+          arr = arr.map((x, i) => ({
+            id: x.id || uid(),
+            addedAt: x.addedAt || Date.now() + i,
+            ...x,
+          }));
+          save(STORE, arr);
+          render();
+          toast("已导入 " + arr.length + " 条");
+        } catch (e) {
+          toast("文件格式不正确");
+        }
+      };
+
+      document.getElementById("sk-add").onclick = addItem;
+
+      /* ============ 筛选绑定 ============ */
+      const filterButtons = document.querySelectorAll(".skills-filter .filter-chip");
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const group = btn.parentElement;
+          const isCat = btn.hasAttribute("data-cat");
+          const isForm = btn.hasAttribute("data-form");
+          const isRisk = btn.hasAttribute("data-risk");
+          const groupType = isCat ? "cat" : isForm ? "form" : isRisk ? "risk" : null;
+          if (!groupType) return;
+          group.querySelectorAll(".filter-chip").forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          state[groupType] = btn.getAttribute("data-" + groupType);
+          render();
+        });
+      });
+
+      document.getElementById("sk-search").addEventListener("input", (ev) => {
+        state.q = ev.target.value.trim();
+        render();
+      });
+      document.getElementById("sk-sort").addEventListener("change", (ev) => {
+        state.sort = ev.target.value;
+        render();
+      });
+
+      /* ============ Reveal + Back to top ============ */
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add("is-visible"); revealIO.unobserve(e.target); }
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -8% 0px" });
+      document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => revealIO.observe(el));
+
+      const backTop = document.getElementById("back-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 600) backTop.classList.add("is-visible");
+        else backTop.classList.remove("is-visible");
+      }, { passive: true });
+      backTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      render();
+    </script>
+  </body>
+</html>

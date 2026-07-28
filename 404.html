@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="页面走丢了 — 但没关系，回到麒麟的主入口看看。" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark light" />
+    <title>404 · 页面走丢了 · 麒麟</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="page-404">
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="切换主题"
+      style="position:fixed;top:20px;right:20px;z-index:100;">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+
+    <main class="error-wrap">
+      <div class="error-card">
+        <p class="eyebrow">Error 404</p>
+        <h1>页面走丢了</h1>
+        <p class="error-msg">
+          你访问的这个路径不存在 — 但没关系，主入口还在。
+          也许你是在找下面这些板块之一。
+        </p>
+        <nav class="error-links" aria-label="主入口导航">
+          <a class="button button-primary" href="./index.html">返回主入口</a>
+          <a class="button button-secondary" href="./growth.html">成长复盘</a>
+          <a class="button button-secondary" href="./resources.html">资源共享</a>
+          <a class="button button-secondary" href="./ai.html">AI 聚合</a>
+          <a class="button button-secondary" href="./skills.html">工具库</a>
+          <a class="button button-secondary" href="./contact.html">联系我</a>
+        </nav>
+      </div>
+      <div class="error-orb" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="280" height="280">
+          <defs>
+            <radialGradient id="g404" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#8052ff" stop-opacity="0.20"/>
+              <stop offset="1" stop-color="#8052ff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="100" fill="url(#g404)"/>
+          <g transform="translate(100 100)">
+            <circle r="64" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 6" opacity="0.4"/>
+            <text text-anchor="middle" y="14" font-family="Inter, serif" font-size="46" font-weight="400" fill="currentColor">404</text>
+          </g>
+        </svg>
+      </div>
+    </main>
+
+    <script>
+      const _root = document.documentElement;
+      const _stored = localStorage.getItem("qilin.theme");
+      const _initial = _stored || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "");
+      if (_initial) _root.setAttribute("data-theme", _initial);
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const isLight = _root.getAttribute("data-theme") === "light";
+        if (isLight) _root.removeAttribute("data-theme");
+        else _root.setAttribute("data-theme", "light");
+        localStorage.setItem("qilin.theme", isLight ? "" : "light");
+      });
+    </script>
+  </body>
+</html>

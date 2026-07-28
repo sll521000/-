@@ -1,0 +1,17 @@
+{
+  "name": "麒麟 | 一个持续努力的人",
+  "short_name": "麒麟",
+  "description": "麒麟的个人入口站：成长复盘、资源共享、AI 聚合、联系",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f1e8",
+  "theme_color": "#254d47",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

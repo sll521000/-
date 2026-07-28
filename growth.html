@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="麒麟的成长复盘 — 每日日记 / 每周复盘 / 学习笔记 / 行动记录 / 阶段总结。本地可写，数据保存在浏览器。"
+    />
+    <meta name="theme-color" content="#f5f1e8" />
+    <meta name="color-scheme" content="dark light" />
+
+    <title>成长复盘 · 麒麟</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://qilin-portfolio.vercel.app/growth.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="成长复盘 · 麒麟" />
+    <meta property="og:description" content="私人复盘 · 密码保护。" />
+    <meta property="og:url" content="https://qilin-portfolio.vercel.app/growth.html" />
+    <meta property="og:image" content="./og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+SC:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="growth">
+    <a href="#main" class="skip-link">跳到正文</a>
+
+    <!-- Lock Screen（密码未确认时显示） -->
+    <div class="lock-screen" id="lock-screen" hidden>
+      <div class="lock-card">
+        <div class="lock-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <p class="eyebrow">Personal Vault</p>
+        <h1 id="lock-title">成长复盘</h1>
+        <p class="lock-sub" id="lock-subtitle">只对主人开放。请输入密码解锁。</p>
+
+        <form id="lock-form" class="lock-input" autocomplete="off">
+          <input type="password" id="lock-password" placeholder="••••" required minlength="4" maxlength="32" autofocus />
+          <div class="lock-error" id="lock-error" aria-live="polite"></div>
+          <div class="lock-actions">
+            <button class="button button-primary" type="submit" id="lock-submit">解锁</button>
+          </div>
+        </form>
+
+        <button type="button" class="lock-reset" id="lock-reset">忘记密码 · 重置</button>
+        <p class="lock-back"><a href="./index.html">← 回到主入口</a></p>
+      </div>
+    </div>
+
+    <header class="site-header" role="banner">
+      <a class="brand" href="./index.html" aria-label="麒麟 · 回到首页">
+        <span class="brand-mark" aria-hidden="true">麒</span>
+        <span>麒麟</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="./index.html#entries" data-nav="">四个入口</a>
+        <a href="./index.html#about" data-nav="">关于</a>
+        <a href="./index.html#now" data-nav="">现在</a>
+      </nav>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="theme-toggle" type="button" aria-label="切换主题" id="theme-toggle">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <a class="header-cta" href="./index.html">← 主入口</a>
+      </div>
+    </header>
+
+    <main id="main" class="subpage" hidden>
+      <section class="section subpage-hero container">
+        <p class="eyebrow">Entry 01 · Growth Review · Private</p>
+        <h1>成长复盘</h1>
+        <p class="subpage-lede">
+          每天学到什么、阶段性踩过什么坑、一个判断为什么改变、一个目标为什么推进不下去。
+          复盘不是写日记，是把行动变成经验。
+        </p>
+        <div class="subpage-meta">
+          <span class="meta-pill"><span class="dot dot-accent"></span>数据本地保存 · 浏览器 localStorage</span>
+          <button class="meta-btn" id="growth-export" type="button">↧ 导出 JSON</button>
+          <label class="meta-btn meta-btn-input">
+            ↥ 导入 JSON
+            <input type="file" id="growth-import" accept="application/json" hidden />
+          </label>
+          <button class="meta-btn" id="growth-lock-out" type="button" title="本会话锁定（关闭浏览器前一直有效）">↩ 锁定</button>
+        </div>
+      </section>
+
+      <!-- Module 00 · 每日日记 -->
+      <section class="section module-section container" id="daily-journal" data-module="daily">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 00 · 每日日记</p>
+            <h2>每天 1 条</h2>
+            <p class="module-lede">颗粒度最细。每个日期只允许一条，超过会归档到旧记录。跨年跨月的都能写。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="daily" type="button">+ 写今天的</button>
+            <button type="button" class="module-fold" data-fold aria-label="折叠">
+              <span class="label">折叠</span><span class="chev">▾</span>
+            </button>
+          </div>
+        </header>
+        <div class="card-list" id="daily-list" aria-live="polite"></div>
+        <p class="empty-hint" id="daily-empty" hidden>还没有日记。从今天开始写第一行。</p>
+      </section>
+
+      <!-- 每周复盘 -->
+      <section class="section module-section container" id="weekly-review" data-module="weekly">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 01 · 每周复盘</p>
+            <h2>每周复盘</h2>
+            <p class="module-lede">按周归档。每条带日期标签，写作时尽量一句话讲完一件事。</p>
+          </div>
+          <div class="module-toolbar">
+            <select class="select" id="weekly-filter" aria-label="按日期筛选">
+              <option value="all">全部</option>
+              <option value="this-week">本周</option>
+              <option value="last-week">上周</option>
+              <option value="older">更早</option>
+            </select>
+            <button class="button button-primary" data-add="weekly" type="button">+ 新增</button>
+            <button type="button" class="module-fold" data-fold aria-label="折叠">
+              <span class="label">折叠</span><span class="chev">▾</span>
+            </button>
+          </div>
+        </header>
+        <div class="card-list" id="weekly-list" aria-live="polite"></div>
+        <p class="empty-hint" id="weekly-empty" hidden>还没有复盘条目。点「+ 新增」开始写第一篇。</p>
+      </section>
+
+      <!-- 学习笔记 -->
+      <section class="section module-section container" id="study-notes" data-module="study">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 02 · 学习笔记</p>
+            <h2>学习笔记</h2>
+            <p class="module-lede">把看过的书、课程、播客、文章里触动你的点沉淀下来，附一句你打算怎么用。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="study" type="button">+ 新增</button>
+            <button type="button" class="module-fold" data-fold aria-label="折叠">
+              <span class="label">折叠</span><span class="chev">▾</span>
+            </button>
+          </div>
+        </header>
+        <div class="card-list" id="study-list" aria-live="polite"></div>
+        <p class="empty-hint" id="study-empty" hidden>还没有笔记。</p>
+      </section>
+
+      <!-- 行动记录 -->
+      <section class="section module-section container" id="action-log" data-module="actions">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 03 · 行动记录</p>
+            <h2>行动记录</h2>
+            <p class="module-lede">按时间线。颗粒度比周复盘更细：做了什么 / 学到什么 / 卡在哪里。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="actions" type="button">+ 新增</button>
+            <button type="button" class="module-fold" data-fold aria-label="折叠">
+              <span class="label">折叠</span><span class="chev">▾</span>
+            </button>
+          </div>
+        </header>
+        <ol class="timeline" id="actions-list" aria-live="polite"></ol>
+        <p class="empty-hint" id="actions-empty" hidden>还没有行动记录。</p>
+      </section>
+
+      <!-- 阶段总结 -->
+      <section class="section module-section container" id="summary-tree" data-module="summary">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 04 · 阶段总结</p>
+            <h2>阶段总结</h2>
+            <p class="module-lede">嵌套大纲。Lv1 是阶段，Lv2 是模块，Lv3 是结论。支持折叠，删除父级会级联。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add-l="1" type="button">+ L1</button>
+            <button class="button button-secondary" data-add-l="2" type="button">+ L2</button>
+            <button class="button button-secondary" data-add-l="3" type="button">+ L3</button>
+            <button type="button" class="module-fold" data-fold aria-label="折叠">
+              <span class="label">折叠</span><span class="chev">▾</span>
+            </button>
+          </div>
+        </header>
+        <ul class="outline" id="summary-list" aria-live="polite"></ul>
+        <p class="empty-hint" id="summary-empty" hidden>还没有阶段总结。先加一个 L1 阶段。</p>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-mark">
+        <span class="brand-mark" aria-hidden="true" style="width:32px;height:32px;font-size:14px;">麒</span>
+        <span>麒麟 · 成长复盘</span>
+      </div>
+      <nav class="footer-links" aria-label="辅助导航">
+        <a href="./index.html">首页</a>
+        <a href="./resources.html">资源共享</a>
+        <a href="./ai.html">AI 聚合</a>
+        <a href="./contact.html">联系</a>
+      </nav>
+      <p>© 2026 麒麟 · Built for continuous effort.</p>
+    </footer>
+
+    <button class="back-top" type="button" id="back-top" aria-label="回到顶部">↑</button>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal" role="document">
+        <div class="modal-header">
+          <h3 id="modal-title">编辑</h3>
+          <button class="modal-close" type="button" data-close aria-label="关闭">×</button>
+        </div>
+        <form id="modal-form" class="modal-body" autocomplete="off"></form>
+        <div class="modal-footer">
+          <button type="button" class="button button-ghost" data-close>取消</button>
+          <button type="submit" form="modal-form" class="button button-primary" id="modal-submit">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      /* ============ Theme ============ */
+      const root = document.documentElement;
+      const THEME_KEY = "qilin.theme";
+      const stored = localStorage.getItem(THEME_KEY);
+      const systemLight = matchMedia("(prefers-color-scheme: light)").matches;
+      const initial = stored || (systemLight ? "light" : "");
+      if (initial) root.setAttribute("data-theme", initial);
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const cur = root.getAttribute("data-theme") === "light";
+        if (cur) root.removeAttribute("data-theme");
+        else root.setAttribute("data-theme", "light");
+        localStorage.setItem(THEME_KEY, cur ? "" : "light");
+      });
+
+      /* ============ Lock · 密码保护 ============ */
+      const PW_KEY = "qilin.growth.pwhash";
+      const AUTH_SESSION = "qilin.growth.authed";
+      const SALT = "qilin-growth-salt::v1";
+
+      async function sha256(s) {
+        try {
+          const enc = new TextEncoder().encode(SALT + s);
+          const buf = await crypto.subtle.digest("SHA-256", enc);
+          return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+        } catch {
+          // 兜底：低端浏览器 / file:// 协议
+          let h = 5381;
+          const str = SALT + s;
+          for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+          return "fb_" + (h >>> 0).toString(16);
+        }
+      }
+
+      const lockScreen = document.getElementById("lock-screen");
+      const mainEl = document.getElementById("main");
+      const lockForm = document.getElementById("lock-form");
+      const lockPassword = document.getElementById("lock-password");
+      const lockError = document.getElementById("lock-error");
+      const lockTitle = document.getElementById("lock-title");
+      const lockSubtitle = document.getElementById("lock-subtitle");
+      let lockMode = "unlock"; // 'unlock' | 'setup'
+
+      function showLock(mode, errorMsg) {
+        lockMode = mode;
+        lockScreen.hidden = false;
+        document.body.classList.add("is-locked");
+        mainEl.hidden = true;
+        if (mode === "setup") {
+          lockTitle.textContent = "设置访问密码";
+          lockSubtitle.textContent = "成长复盘是私人内容。设一个至少 4 位的密码，下次访问需要输入。";
+        } else {
+          lockTitle.textContent = "成长复盘";
+          lockSubtitle.textContent = "只对主人开放。请输入密码解锁。";
+        }
+        lockError.textContent = errorMsg || "";
+        lockPassword.value = "";
+        setTimeout(() => lockPassword.focus(), 50);
+      }
+
+      function hideLock() {
+        lockScreen.hidden = true;
+        document.body.classList.remove("is-locked");
+        mainEl.hidden = false;
+      }
+
+      async function trySetup(p1) {
+        const p2 = prompt("再输入一次确认");
+        if (p2 === null) return false;
+        if (p1 !== p2) {
+          showLock("setup", "两次输入不一致");
+          return false;
+        }
+        const h = await sha256(p1);
+        localStorage.setItem(PW_KEY, h);
+        return true;
+      }
+
+      async function tryUnlock(p) {
+        const stored = localStorage.getItem(PW_KEY);
+        if (!stored) return false;
+        const h = await sha256(p);
+        return h === stored;
+      }
+
+      lockForm.addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const p = lockPassword.value;
+        if (!p || p.length < 4) {
+          lockError.textContent = "密码至少 4 位";
+          return;
+        }
+        lockError.textContent = "验证中…";
+        if (lockMode === "setup") {
+          const ok = await trySetup(p);
+          if (ok) {
+            sessionStorage.setItem(AUTH_SESSION, "1");
+            hideLock();
+          } else {
+            lockError.textContent = "两次输入不一致";
+          }
+        } else {
+          const ok = await tryUnlock(p);
+          if (ok) {
+            sessionStorage.setItem(AUTH_SESSION, "1");
+            hideLock();
+          } else {
+            lockError.textContent = "密码错误";
+            lockPassword.value = "";
+            lockPassword.focus();
+          }
+        }
+        if (!lockScreen.hidden) return;
+        // 解锁成功才渲染列表
+        renderDaily();
+        renderDiary(STORE.weekly, document.getElementById("weekly-list"), document.getElementById("weekly-empty"), { showTag: "周复盘" });
+        renderDiary(STORE.study, document.getElementById("study-list"), document.getElementById("study-empty"), { showTag: "笔记" });
+        renderActions();
+        renderSummary();
+      });
+
+      document.getElementById("growth-lock-out")?.addEventListener("click", () => {
+        sessionStorage.removeItem(AUTH_SESSION);
+        showLock("unlock");
+      });
+
+      document.getElementById("lock-reset")?.addEventListener("click", () => {
+        if (confirm("重置会清空密码并清空本地复盘数据。确认？")) {
+          ["qilin.growth.weekly", "qilin.growth.study", "qilin.growth.actions", "qilin.growth.summary", "qilin.growth.daily", PW_KEY].forEach((k) => localStorage.removeItem(k));
+          sessionStorage.removeItem(AUTH_SESSION);
+          location.reload();
+        }
+      });
+
+      // 启动时判定
+      (async function authBoot() {
+        const authed = sessionStorage.getItem(AUTH_SESSION) === "1";
+        if (authed) {
+          hideLock();
+          return;
+        }
+        const stored = localStorage.getItem(PW_KEY);
+        if (!stored) {
+          showLock("setup");
+        } else {
+          showLock("unlock");
+        }
+      })();
+
+      /* ============ Storage ============ */
+      const STORE = {
+        daily:  "qilin.growth.daily",
+        weekly: "qilin.growth.weekly",
+        study:  "qilin.growth.study",
+        actions:"qilin.growth.actions",
+        summary:"qilin.growth.summary",
+      };
+      const load = (k) => { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } };
+      const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+      const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      const todayISO = () => new Date().toISOString().slice(0, 10);
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+      /* ============ Toast ============ */
+      const toastEl = document.getElementById("toast");
+      let toastTimer;
+      const toast = (msg) => {
+        toastEl.textContent = msg;
+        toastEl.classList.add("is-visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 1800);
+      };
+
+      /* ============ Modal ============ */
+      const modalEl = document.getElementById("modal");
+      const modalForm = document.getElementById("modal-form");
+      const modalTitle = document.getElementById("modal-title");
+      let modalSubmitFn = null;
+      const openModal = ({ title, fields, values = {}, submitLabel = "保存", onSubmit }) => {
+        modalTitle.textContent = title;
+        modalForm.innerHTML = "";
+        fields.forEach((f) => {
+          const id = "field-" + f.name;
+          const wrap = document.createElement("div");
+          wrap.className = "field";
+          const label = document.createElement("label");
+          label.className = "field-label";
+          label.setAttribute("for", id);
+          label.textContent = f.label + (f.required ? " *" : "");
+          wrap.appendChild(label);
+          let input;
+          if (f.type === "textarea") {
+            input = document.createElement("textarea");
+            input.className = "textarea";
+          } else if (f.type === "select") {
+            input = document.createElement("select");
+            input.className = "select-modal";
+            (f.options || []).forEach((o) => {
+              const opt = document.createElement("option");
+              opt.value = o.value;
+              opt.textContent = o.label;
+              if (values[f.name] === o.value) opt.selected = true;
+              input.appendChild(opt);
+            });
+          } else {
+            input = document.createElement("input");
+            input.className = "input";
+            input.type = f.type || "text";
+          }
+          input.id = id;
+          input.name = f.name;
+          if (f.placeholder) input.placeholder = f.placeholder;
+          if (f.required) input.required = true;
+          const v = values[f.name];
+          if (v !== undefined && f.type !== "select") input.value = v ?? "";
+          wrap.appendChild(input);
+          if (f.hint) {
+            const hint = document.createElement("div");
+            hint.className = "field-hint";
+            hint.textContent = f.hint;
+            wrap.appendChild(hint);
+          }
+          modalForm.appendChild(wrap);
+        });
+        document.getElementById("modal-submit").textContent = submitLabel;
+        modalSubmitFn = onSubmit;
+        modalEl.hidden = false;
+        requestAnimationFrame(() => modalEl.classList.add("is-open"));
+        const first = modalForm.querySelector("input, textarea, select");
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeModal = () => {
+        modalEl.classList.remove("is-open");
+        setTimeout(() => { modalEl.hidden = true; }, 240);
+      };
+      modalEl.addEventListener("click", (ev) => {
+        if (ev.target === modalEl) closeModal();
+        if (ev.target.closest("[data-close]")) closeModal();
+      });
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && modalEl.classList.contains("is-open")) closeModal();
+      });
+      modalForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const data = Object.fromEntries(new FormData(modalForm).entries());
+        if (modalSubmitFn) modalSubmitFn(data);
+        closeModal();
+      });
+
+      /* ============ 每日日记 (Module 00) ============ */
+      function renderDaily() {
+        const items = load(STORE.daily).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+        const listEl = document.getElementById("daily-list");
+        const emptyEl = document.getElementById("daily-empty");
+        listEl.innerHTML = "";
+        if (!items.length) { emptyEl.hidden = false; return; }
+        emptyEl.hidden = true;
+        items.forEach((it) => {
+          const card = document.createElement("article");
+          card.className = "diary-card";
+          card.dataset.id = it.id;
+          card.innerHTML = `
+            <header class="diary-head">
+              <span class="diary-date">${esc(it.date || "未填日期")}</span>
+              <span class="diary-tag">每日</span>
+              <div class="diary-actions">
+                <button type="button" data-act="edit">编辑</button>
+                <button type="button" data-act="del">删除</button>
+              </div>
+            </header>
+            <h3 class="diary-title">${esc(it.title || "日记")}</h3>
+            <pre class="diary-body">${esc(it.body || "")}</pre>
+          `;
+          card.querySelector('[data-act="edit"]').onclick = () => editDaily(it.id);
+          card.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条日记？")) {
+              save(STORE.daily, load(STORE.daily).filter((x) => x.id !== it.id));
+              renderDaily();
+              toast("已删除");
+            }
+          };
+          listEl.appendChild(card);
+        });
+      }
+      function editDaily(id) {
+        const cur = load(STORE.daily).find((x) => x.id === id);
+        if (!cur) return;
+        openModal({
+          title: "编辑 日记",
+          fields: [
+            { name: "date", label: "日期", type: "date", required: true },
+            { name: "title", label: "一句话标题", type: "text", placeholder: "今天主题" },
+            { name: "body", label: "正文", type: "textarea", placeholder: "多行...换行直接写" },
+          ],
+          values: cur,
+          onSubmit: (data) => {
+            const all = load(STORE.daily);
+            const idx = all.findIndex((x) => x.id === id);
+            all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+            save(STORE.daily, all);
+            renderDaily();
+            toast("已保存");
+          },
+        });
+      }
+      function addDaily() {
+        const today = todayISO();
+        const existing = load(STORE.daily).find((x) => x.date === today);
+        if (existing) {
+          if (!confirm("今天已经有日记了。覆盖还是另写一条新条目？(取消 = 跳过)")) return;
+          // 让用户编辑已有的"今天"日记
+          editDaily(existing.id);
+          return;
+        }
+        openModal({
+          title: "写今天的日记 · " + today,
+          fields: [
+            { name: "title", label: "一句话标题（可空）", type: "text", placeholder: "今天的主题" },
+            { name: "body", label: "正文", type: "textarea", placeholder: "今天学到了什么 / 推进了什么 / 卡在哪里..." },
+          ],
+          values: { title: "", body: "", date: today },
+          submitLabel: "保存",
+          onSubmit: (data) => {
+            const items = load(STORE.daily);
+            items.push({ id: uid(), date: today, title: data.title, body: data.body, createdAt: Date.now(), updatedAt: Date.now() });
+            save(STORE.daily, items);
+            renderDaily();
+            toast("今天的日记已存好");
+          },
+        });
+      }
+
+      /* ============ 每周复盘 / 学习笔记（共享渲染） ============ */
+      function renderDiary(key, listEl, emptyEl, opts = {}) {
+        const items = load(key).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+        listEl.innerHTML = "";
+        if (!items.length) { emptyEl.hidden = false; return; }
+        emptyEl.hidden = true;
+        items.forEach((it) => {
+          const card = document.createElement("article");
+          card.className = "diary-card";
+          card.dataset.id = it.id;
+          card.innerHTML = `
+            <header class="diary-head">
+              <span class="diary-date">${esc(it.date || "未填日期")}</span>
+              <span class="diary-tag">${esc(opts.showTag || "")}</span>
+              <div class="diary-actions">
+                <button type="button" data-act="edit">编辑</button>
+                <button type="button" data-act="del">删除</button>
+              </div>
+            </header>
+            <h3 class="diary-title">${esc(it.title || "(未命名)")}</h3>
+            <pre class="diary-body">${esc(it.body || "")}</pre>
+          `;
+          card.querySelector('[data-act="edit"]').onclick = () => editDiary(key, it.id, opts);
+          card.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条？")) {
+              save(key, load(key).filter((x) => x.id !== it.id));
+              renderDiary(key, listEl, emptyEl, opts);
+              toast("已删除");
+            }
+          };
+          listEl.appendChild(card);
+        });
+      }
+      function editDiary(key, id, opts) {
+        const cur = load(key).find((x) => x.id === id);
+        if (!cur) return;
+        openModal({
+          title: "编辑 " + (opts.tag || "记录"),
+          fields: [
+            { name: "date", label: "日期", type: "date", required: true },
+            { name: "title", label: "标题", type: "text" },
+            { name: "body", label: "正文", type: "textarea" },
+          ],
+          values: cur,
+          onSubmit: (data) => {
+            const all = load(key);
+            const idx = all.findIndex((x) => x.id === id);
+            all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+            save(key, all);
+            renderAll();
+            toast("已保存");
+          },
+        });
+      }
+      function addDiary(key, opts) {
+        openModal({
+          title: "新增 " + (opts.tag || "记录"),
+          fields: [
+            { name: "date", label: "日期", type: "date", required: true },
+            { name: "title", label: "标题", type: "text" },
+            { name: "body", label: "正文", type: "textarea" },
+          ],
+          values: { date: todayISO(), title: "", body: "" },
+          submitLabel: "添加",
+          onSubmit: (data) => {
+            const items = load(key);
+            items.push({ id: uid(), ...data, createdAt: Date.now() });
+            save(key, items);
+            renderAll();
+            toast((opts.tag || "记录") + "已新增");
+          },
+        });
+      }
+
+      /* ============ 行动记录 ============ */
+      function renderActions() {
+        const items = load(STORE.actions).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+        const listEl = document.getElementById("actions-list");
+        const emptyEl = document.getElementById("actions-empty");
+        listEl.innerHTML = "";
+        if (!items.length) { emptyEl.hidden = false; return; }
+        emptyEl.hidden = true;
+        items.forEach((it) => {
+          const li = document.createElement("li");
+          li.className = "timeline-item";
+          li.dataset.id = it.id;
+          li.innerHTML = `
+            <span class="timeline-dot"></span>
+            <article class="timeline-card">
+              <header class="timeline-head">
+                <time>${esc(it.date || "—")}</time>
+                <div class="timeline-actions">
+                  <button type="button" data-act="edit">编辑</button>
+                  <button type="button" data-act="del">删除</button>
+                </div>
+              </header>
+              <div class="timeline-grid">
+                <div><span class="lbl">做了什么</span><p>${esc(it.done || "")}</p></div>
+                <div><span class="lbl">学到了什么</span><p>${esc(it.learned || "")}</p></div>
+                <div><span class="lbl">卡在哪里</span><p>${esc(it.blocked || "")}</p></div>
+              </div>
+            </article>
+          `;
+          li.querySelector('[data-act="edit"]').onclick = () => editAction(it.id);
+          li.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条？")) {
+              save(STORE.actions, load(STORE.actions).filter((x) => x.id !== it.id));
+              renderActions();
+              toast("已删除");
+            }
+          };
+          listEl.appendChild(li);
+        });
+      }
+      function editAction(id) {
+        const cur = load(STORE.actions).find((x) => x.id === id);
+        if (!cur) return;
+        openModal({
+          title: "编辑 行动记录",
+          fields: [
+            { name: "date", label: "日期", type: "date", required: true },
+            { name: "done", label: "做了什么", type: "textarea" },
+            { name: "learned", label: "学到了什么", type: "textarea" },
+            { name: "blocked", label: "卡在哪里", type: "textarea" },
+          ],
+          values: cur,
+          onSubmit: (data) => {
+            const all = load(STORE.actions);
+            const idx = all.findIndex((x) => x.id === id);
+            all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+            save(STORE.actions, all);
+            renderActions();
+            toast("已保存");
+          },
+        });
+      }
+      function addAction() {
+        openModal({
+          title: "新增 行动记录",
+          fields: [
+            { name: "date", label: "日期", type: "date", required: true },
+            { name: "done", label: "做了什么", type: "textarea" },
+            { name: "learned", label: "学到了什么", type: "textarea" },
+            { name: "blocked", label: "卡在哪里", type: "textarea" },
+          ],
+          values: { date: todayISO() },
+          submitLabel: "添加",
+          onSubmit: (data) => {
+            const items = load(STORE.actions);
+            items.push({ id: uid(), ...data, createdAt: Date.now() });
+            save(STORE.actions, items);
+            renderActions();
+            toast("行动记录已新增");
+          },
+        });
+      }
+
+      /* ============ 阶段总结 ============ */
+      function renderSummary() {
+        const items = load(STORE.summary).sort((a, b) => (a.order || 0) - (b.order || 0));
+        const ulEl = document.getElementById("summary-list");
+        const emptyEl = document.getElementById("summary-empty");
+        emptyEl.hidden = items.length > 0;
+        ulEl.innerHTML = "";
+        if (!items.length) return;
+        const map = new Map();
+        items.forEach((it) => map.set(it.id, { ...it, children: [] }));
+        const roots = [];
+        map.forEach((node) => {
+          if (node.parentId && map.has(node.parentId)) map.get(node.parentId).children.push(node);
+          else roots.push(node);
+        });
+        const renderNode = (node, ul) => {
+          const li = document.createElement("li");
+          li.className = `outline-item outline-l${node.level}`;
+          const hasKids = node.children && node.children.length > 0;
+          li.innerHTML = `
+            <div class="outline-row">
+              <button type="button" class="outline-toggle" aria-expanded="true" ${hasKids ? "" : "hidden"}>▾</button>
+              <span class="outline-marker">L${node.level}</span>
+              <span class="outline-title">${esc(node.title || "(未命名)")}</span>
+              <div class="outline-actions">
+                <button type="button" data-act="edit">编辑</button>
+                ${node.level < 3 ? `<button type="button" data-act="addchild">+ L${node.level + 1}</button>` : ""}
+                <button type="button" data-act="del">删除</button>
+              </div>
+            </div>
+            ${node.body ? `<p class="outline-body">${esc(node.body)}</p>` : ""}
+            ${hasKids ? `<ul class="outline outline-child"></ul>` : ""}
+          `;
+          ul.appendChild(li);
+          if (hasKids) {
+            const childUl = li.querySelector(".outline-child");
+            node.children.forEach((c) => renderNode(c, childUl));
+            const toggle = li.querySelector(".outline-toggle");
+            toggle.onclick = () => {
+              const open = toggle.getAttribute("aria-expanded") === "true";
+              toggle.setAttribute("aria-expanded", String(!open));
+              toggle.textContent = open ? "▸" : "▾";
+              childUl.style.display = open ? "none" : "";
+              const outlineBody = li.querySelector(".outline-body");
+              if (outlineBody) outlineBody.style.display = open ? "none" : "";
+            };
+          }
+          li.querySelector('[data-act="edit"]').onclick = () => editOutline(node.id);
+          li.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条及其所有子级？")) {
+              deleteOutlineCascade(node.id);
+              renderSummary();
+              toast("已删除");
+            }
+          };
+          const addChildBtn = li.querySelector('[data-act="addchild"]');
+          if (addChildBtn) addChildBtn.onclick = () => addOutlineChild(node.id, parseInt(node.level, 10) + 1);
+        };
+        roots.forEach((r) => renderNode(r, ulEl));
+      }
+      function editOutline(id) {
+        const cur = load(STORE.summary).find((x) => x.id === id);
+        if (!cur) return;
+        openModal({
+          title: `编辑 Lv${cur.level} 条目`,
+          fields: [
+            { name: "title", label: "标题", type: "text", required: true },
+            { name: "body", label: "心得 / 描述", type: "textarea" },
+          ],
+          values: { title: cur.title || "", body: cur.body || "" },
+          onSubmit: (data) => {
+            const all = load(STORE.summary);
+            const idx = all.findIndex((x) => x.id === id);
+            all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+            save(STORE.summary, all);
+            renderSummary();
+            toast("已保存");
+          },
+        });
+      }
+      function addOutlineRoot(level) {
+        openModal({
+          title: `新增 Lv${level} 条目`,
+          fields: [
+            { name: "title", label: "标题", type: "text", required: true },
+            { name: "body", label: "心得 / 描述", type: "textarea" },
+          ],
+          values: { title: "", body: "" },
+          submitLabel: "添加",
+          onSubmit: (data) => {
+            const items = load(STORE.summary);
+            items.push({ id: uid(), level, parentId: null, title: data.title, body: data.body || "", order: items.length, createdAt: Date.now() });
+            save(STORE.summary, items);
+            renderSummary();
+            toast("已新增 L" + level);
+          },
+        });
+      }
+      function addOutlineChild(parentId, level) {
+        openModal({
+          title: `新增 Lv${level} 子条目`,
+          fields: [
+            { name: "title", label: "标题", type: "text", required: true },
+            { name: "body", label: "心得 / 描述", type: "textarea" },
+          ],
+          values: { title: "", body: "" },
+          submitLabel: "添加",
+          onSubmit: (data) => {
+            const items = load(STORE.summary);
+            items.push({ id: uid(), level, parentId, title: data.title, body: data.body || "", order: items.length, createdAt: Date.now() });
+            save(STORE.summary, items);
+            renderSummary();
+            toast("已新增 L" + level);
+          },
+        });
+      }
+      function deleteOutlineCascade(id) {
+        const items = load(STORE.summary);
+        const toDel = new Set([id]);
+        let changed = true;
+        while (changed) {
+          changed = false;
+          for (const it of items) {
+            if (it.parentId && toDel.has(it.parentId) && !toDel.has(it.id)) {
+              toDel.add(it.id);
+              changed = true;
+            }
+          }
+        }
+        save(STORE.summary, items.filter((x) => !toDel.has(x.id)));
+      }
+
+      /* ============ Fold / Collapse ============ */
+      const FOLD_KEY = "qilin.growth.folds";
+      const loadFolds = () => { try { return JSON.parse(localStorage.getItem(FOLD_KEY)) || {}; } catch { return {}; } };
+      const saveFolds = (v) => localStorage.setItem(FOLD_KEY, JSON.stringify(v));
+
+      function applyFolds() {
+        const folds = loadFolds();
+        document.querySelectorAll(".module-section[data-module]").forEach((sec) => {
+          const key = sec.dataset.module;
+          const lbl = sec.querySelector(".module-fold .label");
+          if (folds[key]) {
+            sec.classList.add("is-collapsed");
+            if (lbl) lbl.textContent = "展开";
+          } else {
+            sec.classList.remove("is-collapsed");
+            if (lbl) lbl.textContent = "折叠";
+          }
+        });
+      }
+      document.querySelectorAll(".module-section[data-module]").forEach((sec) => {
+        const key = sec.dataset.module;
+        const btn = sec.querySelector(".module-fold");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          const folds = loadFolds();
+          folds[key] = !folds[key];
+          saveFolds(folds);
+          applyFolds();
+        });
+      });
+      applyFolds();
+
+      /* ============ Import / Export ============ */
+      document.getElementById("growth-export").onclick = () => {
+        const dump = {};
+        for (const k of Object.values(STORE)) dump[k] = load(k);
+        const blob = new Blob([JSON.stringify(dump, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `qilin-growth-${todayISO()}.json`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        toast("已导出 JSON");
+      };
+      document.getElementById("growth-import").onchange = async (ev) => {
+        const f = ev.target.files[0];
+        if (!f) return;
+        if (!confirm("导入会覆盖当前所有数据，继续？")) return;
+        try {
+          const dump = JSON.parse(await f.text());
+          for (const k of Object.values(STORE)) if (Array.isArray(dump[k])) save(k, dump[k]);
+          renderAll();
+          toast("已导入");
+        } catch { toast("文件格式不正确"); }
+      };
+
+      /* ============ Weekly Filter ============ */
+      function applyWeeklyFilter() {
+        const sel = document.getElementById("weekly-filter");
+        if (!sel) return;
+        const val = sel.value;
+        const items = Array.from(document.querySelectorAll("#weekly-list .diary-card"));
+        if (val === "all") { items.forEach((el) => (el.style.display = "")); return; }
+        const now = new Date();
+        const weekStart = new Date(now);
+        weekStart.setDate(now.getDate() - now.getDay());
+        weekStart.setHours(0, 0, 0, 0);
+        items.forEach((el) => {
+          const dateStr = el.querySelector(".diary-date").textContent.trim();
+          const d = new Date(dateStr);
+          let show = false;
+          if (val === "this-week") show = d >= weekStart;
+          else if (val === "last-week") {
+            const lastStart = new Date(weekStart);
+            lastStart.setDate(lastStart.getDate() - 7);
+            show = d >= lastStart && d < weekStart;
+          } else if (val === "older") show = d < new Date(weekStart.getTime() - 7 * 86400000);
+          el.style.display = show ? "" : "none";
+        });
+      }
+      document.getElementById("weekly-filter")?.addEventListener("change", applyWeeklyFilter);
+
+      /* ============ Reveal / Buttons / Back to top ============ */
+      document.querySelectorAll("[data-add]").forEach((b) => {
+        b.onclick = () => {
+          const k = b.dataset.add;
+          if (k === "weekly") addDiary(STORE.weekly, { showTag: "周复盘", tag: "周复盘" });
+          else if (k === "study") addDiary(STORE.study, { showTag: "笔记", tag: "笔记" });
+          else if (k === "actions") addAction();
+          else if (k === "daily") addDaily();
+        };
+      });
+      document.querySelectorAll("[data-add-l]").forEach((b) => {
+        b.onclick = () => addOutlineRoot(parseInt(b.dataset.addL, 10));
+      });
+
+      const backTop = document.getElementById("back-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 600) backTop.classList.add("is-visible");
+        else backTop.classList.remove("is-visible");
+      }, { passive: true });
+      backTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      // 注意：列表只在解锁成功后渲染
+    </script>
+  </body>
+</html>

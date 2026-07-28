@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="麒麟的资源共享 — AI 工具清单 / 学习资源 / 效率模板 / 实用链接。本地可编辑。" />
+    <meta name="theme-color" content="#f5f1e8" />
+    <title>资源共享 · 麒麟</title>
+    <link rel="canonical" href="https://qilin-portfolio.vercel.app/resources.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="资源共享 · 麒麟" />
+    <meta property="og:description" content="AI 工具 / 学习资源 / 效率模板 / 实用链接。" />
+    <meta property="og:url" content="https://qilin-portfolio.vercel.app/resources.html" />
+    <meta property="og:image" content="./og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+SC:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="resources">
+    <a href="#main" class="skip-link">跳到正文</a>
+
+    <header class="site-header" role="banner">
+      <a class="brand" href="./index.html" aria-label="麒麟 · 回到首页">
+        <span class="brand-mark" aria-hidden="true">麒</span>
+        <span>麒麟</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="./index.html#entries" data-nav="">四个入口</a>
+        <a href="./index.html#about" data-nav="">关于</a>
+        <a href="./index.html#now" data-nav="">现在</a>
+      </nav>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="theme-toggle" type="button" aria-label="切换主题" id="theme-toggle">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </button>
+        <a class="header-cta" href="./index.html">← 主入口</a>
+      </div>
+    </header>
+
+    <main id="main" class="subpage">
+      <section class="section subpage-hero container">
+        <p class="eyebrow">Entry 02 · Resources</p>
+        <h1>资源共享</h1>
+        <p class="subpage-lede">
+          整理工具、资料、方法、链接。每个模块都可以新增、编辑、删除，内容保存在浏览器本地。
+        </p>
+        <div class="subpage-meta">
+          <span class="meta-pill"><span class="dot dot-gold"></span>数据本地保存 · 浏览器 localStorage</span>
+          <button class="meta-btn" id="r-export" type="button">↧ 导出 JSON</button>
+          <label class="meta-btn meta-btn-input">↥ 导入 JSON<input type="file" id="r-import" accept="application/json" hidden /></label>
+        </div>
+      </section>
+
+      <!-- AI 工具清单 -->
+      <section class="section module-section container" data-module="tools">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 01 · AI 工具清单</p>
+            <h2>AI 工具清单</h2>
+            <p class="module-lede">记录真正在用的工具：链接、用途、付费情况、备注。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="tools" type="button">+ 新增</button>
+          </div>
+        </header>
+        <div class="card-grid" id="list-tools"></div>
+        <p class="empty-hint" id="empty-tools" hidden>还没有工具。点「+ 新增」加一个。</p>
+      </section>
+
+      <!-- 学习资源 -->
+      <section class="section module-section container" data-module="study">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 02 · 学习资源</p>
+            <h2>学习资源</h2>
+            <p class="module-lede">书、课程、播客、文章。带状态：todo / reading / done / backlog。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="study" type="button">+ 新增</button>
+          </div>
+        </header>
+        <div class="card-list" id="list-study-r"></div>
+        <p class="empty-hint" id="empty-study" hidden>还没有资源。</p>
+      </section>
+
+      <!-- 效率模板 -->
+      <section class="section module-section container" data-module="templates">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 03 · 效率模板</p>
+            <h2>效率模板</h2>
+            <p class="module-lede">周计划、日复盘、项目立项。点"复制"直接拿走。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="templates" type="button">+ 新增</button>
+          </div>
+        </header>
+        <div class="card-list" id="list-templates"></div>
+        <p class="empty-hint" id="empty-templates" hidden>还没有模板。</p>
+      </section>
+
+      <!-- 实用链接 -->
+      <section class="section module-section container" data-module="links">
+        <header class="module-header">
+          <div>
+            <p class="eyebrow">Module 04 · 实用链接</p>
+            <h2>实用链接</h2>
+            <p class="module-lede">GitHub / 文档 / 工具站 / 任何你想随时点开的链接。</p>
+          </div>
+          <div class="module-toolbar">
+            <button class="button button-primary" data-add="links" type="button">+ 新增</button>
+          </div>
+        </header>
+        <div class="card-grid" id="list-links"></div>
+        <p class="empty-hint" id="empty-links" hidden>还没有链接。</p>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-mark">
+        <span class="brand-mark" aria-hidden="true" style="width:32px;height:32px;font-size:14px;">麒</span>
+        <span>麒麟 · 资源共享</span>
+      </div>
+      <nav class="footer-links" aria-label="辅助导航">
+        <a href="./index.html">首页</a>
+        <a href="./growth.html">成长复盘</a>
+        <a href="./ai.html">AI 聚合</a>
+        <a href="./contact.html">联系</a>
+      </nav>
+      <p>© 2026 麒麟 · Built for continuous effort.</p>
+    </footer>
+
+    <button class="back-top" type="button" id="back-top" aria-label="回到顶部">↑</button>
+
+    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal" role="document">
+        <div class="modal-header">
+          <h3 id="modal-title">编辑</h3>
+          <button class="modal-close" type="button" data-close aria-label="关闭">×</button>
+        </div>
+        <form id="modal-form" class="modal-body" autocomplete="off"></form>
+        <div class="modal-footer">
+          <button type="button" class="button button-ghost" data-close>取消</button>
+          <button type="submit" form="modal-form" class="button button-primary" id="modal-submit">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      /* ===== Theme ===== */
+      const _root = document.documentElement;
+      const _stored = localStorage.getItem("qilin.theme");
+      const _initial = _stored || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "");
+      if (_initial) _root.setAttribute("data-theme", _initial);
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const isLight = _root.getAttribute("data-theme") === "light";
+        if (isLight) _root.removeAttribute("data-theme");
+        else _root.setAttribute("data-theme", "light");
+        localStorage.setItem("qilin.theme", isLight ? "" : "light");
+      });
+      const STORE = {
+        tools:     "qilin.res.tools",
+        study:     "qilin.res.study",
+        templates: "qilin.res.templates",
+        links:     "qilin.res.links",
+      };
+      const load = (k) => { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } };
+      const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+      const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      const today = () => new Date().toISOString().slice(0, 10);
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+      /* Toast */
+      const toastEl = document.getElementById("toast");
+      let toastTimer;
+      const toast = (msg) => {
+        toastEl.textContent = msg;
+        toastEl.classList.add("is-visible");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 1800);
+      };
+
+      /* Modal */
+      const modalEl = document.getElementById("modal");
+      const modalForm = document.getElementById("modal-form");
+      const modalTitle = document.getElementById("modal-title");
+      let modalSubmitFn = null;
+
+      const openModal = ({ title, fields, values = {}, submitLabel = "保存", onSubmit }) => {
+        modalTitle.textContent = title;
+        modalForm.innerHTML = "";
+        fields.forEach((f) => {
+          const id = "field-" + f.name;
+          const wrap = document.createElement("div");
+          wrap.className = "field";
+          const label = document.createElement("label");
+          label.className = "field-label";
+          label.setAttribute("for", id);
+          label.textContent = f.label + (f.required ? " *" : "");
+          wrap.appendChild(label);
+          let input;
+          if (f.type === "textarea") {
+            input = document.createElement("textarea");
+            input.className = "textarea";
+          } else if (f.type === "select") {
+            input = document.createElement("select");
+            input.className = "select-modal";
+            (f.options || []).forEach((o) => {
+              const opt = document.createElement("option");
+              opt.value = o.value;
+              opt.textContent = o.label;
+              if (values[f.name] === o.value) opt.selected = true;
+              input.appendChild(opt);
+            });
+          } else {
+            input = document.createElement("input");
+            input.className = "input";
+            input.type = f.type || "text";
+          }
+          input.id = id;
+          input.name = f.name;
+          if (f.placeholder) input.placeholder = f.placeholder;
+          if (f.required) input.required = true;
+          const v = values[f.name];
+          if (v !== undefined && f.type !== "select") input.value = v ?? "";
+          wrap.appendChild(input);
+          if (f.hint) {
+            const hint = document.createElement("div");
+            hint.className = "field-hint";
+            hint.textContent = f.hint;
+            wrap.appendChild(hint);
+          }
+          modalForm.appendChild(wrap);
+        });
+        document.getElementById("modal-submit").textContent = submitLabel;
+        modalSubmitFn = onSubmit;
+        modalEl.hidden = false;
+        requestAnimationFrame(() => modalEl.classList.add("is-open"));
+        const first = modalForm.querySelector("input, textarea, select");
+        if (first) setTimeout(() => first.focus(), 60);
+      };
+      const closeModal = () => {
+        modalEl.classList.remove("is-open");
+        setTimeout(() => { modalEl.hidden = true; }, 240);
+      };
+      modalEl.addEventListener("click", (ev) => {
+        if (ev.target === modalEl) closeModal();
+        if (ev.target.closest("[data-close]")) closeModal();
+      });
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && modalEl.classList.contains("is-open")) closeModal();
+      });
+      modalForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const data = Object.fromEntries(new FormData(modalForm).entries());
+        if (modalSubmitFn) modalSubmitFn(data);
+        closeModal();
+      });
+
+      /* ========== Tool / Link 卡片网格 ========== */
+      function renderCardGrid(key, listEl, emptyEl, kind) {
+        const items = load(key);
+        listEl.innerHTML = "";
+        if (!items.length) { emptyEl.hidden = false; return; }
+        emptyEl.hidden = true;
+        items.forEach((it) => {
+          const card = document.createElement("article");
+          card.className = "link-card";
+          card.dataset.id = it.id;
+          if (kind === "tools") {
+            card.innerHTML = `
+              <header class="link-head">
+                <span class="tool-badge">${esc(it.tag || "工具")}</span>
+                <div class="link-actions">
+                  <button type="button" data-act="edit">编辑</button>
+                  <button type="button" data-act="del">删除</button>
+                </div>
+              </header>
+              <h3 class="link-title">${esc(it.name || "(未命名)")}</h3>
+              ${it.url ? `<a class="link-url" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.url)}</a>` : ""}
+              ${it.note ? `<p class="link-note">${esc(it.note)}</p>` : ""}
+            `;
+          } else {
+            card.innerHTML = `
+              <header class="link-head">
+                <span class="tool-badge">${esc(it.tag || "链接")}</span>
+                <div class="link-actions">
+                  <button type="button" data-act="edit">编辑</button>
+                  <button type="button" data-act="del">删除</button>
+                </div>
+              </header>
+              <h3 class="link-title">${esc(it.title || "(未命名)")}</h3>
+              ${it.url ? `<a class="link-url" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.url)}</a>` : ""}
+              ${it.desc ? `<p class="link-note">${esc(it.desc)}</p>` : ""}
+            `;
+          }
+          card.querySelector('[data-act="edit"]').onclick = () => editItem(key, it.id, kind);
+          card.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条？")) {
+              save(key, load(key).filter((x) => x.id !== it.id));
+              renderAll();
+              toast("已删除");
+            }
+          };
+          listEl.appendChild(card);
+        });
+      }
+
+      function editItem(key, id, kind) {
+        const cur = load(key).find((x) => x.id === id);
+        if (!cur) return;
+        if (kind === "tools") {
+          openModal({
+            title: "编辑 工具",
+            fields: [
+              { name: "name", label: "工具名", type: "text", required: true },
+              { name: "url", label: "链接", type: "url", placeholder: "https://..." },
+              { name: "tag", label: "标签", type: "text", placeholder: "LLM / Agent / 写作" },
+              { name: "note", label: "备注", type: "textarea", placeholder: "用法、付费情况、注意事项" },
+            ],
+            values: cur,
+            onSubmit: (data) => {
+              const all = load(key);
+              const idx = all.findIndex((x) => x.id === id);
+              all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+              save(key, all);
+              renderAll();
+              toast("已保存");
+            },
+          });
+        } else {
+          openModal({
+            title: "编辑 链接",
+            fields: [
+              { name: "title", label: "标题", type: "text", required: true },
+              { name: "url", label: "链接", type: "url", placeholder: "https://..." },
+              { name: "tag", label: "标签", type: "text", placeholder: "GitHub / 文档 / 工具站" },
+              { name: "desc", label: "简介", type: "textarea" },
+            ],
+            values: cur,
+            onSubmit: (data) => {
+              const all = load(key);
+              const idx = all.findIndex((x) => x.id === id);
+              all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+              save(key, all);
+              renderAll();
+              toast("已保存");
+            },
+          });
+        }
+      }
+
+      function addItem(kind) {
+        if (kind === "tools") {
+          openModal({
+            title: "新增 AI 工具",
+            fields: [
+              { name: "name", label: "工具名", type: "text", required: true, placeholder: "如：Claude Code" },
+              { name: "url", label: "链接", type: "url", placeholder: "https://..." },
+              { name: "tag", label: "标签", type: "text", placeholder: "LLM / Agent / 写作" },
+              { name: "note", label: "备注", type: "textarea", placeholder: "用法、付费情况、注意事项" },
+            ],
+            values: { name: "", url: "", tag: "", note: "" },
+            submitLabel: "添加",
+            onSubmit: (data) => {
+              const items = load(STORE.tools);
+              items.push({ id: uid(), ...data, createdAt: Date.now() });
+              save(STORE.tools, items);
+              renderAll();
+              toast("已新增");
+            },
+          });
+        } else {
+          openModal({
+            title: "新增 实用链接",
+            fields: [
+              { name: "title", label: "标题", type: "text", required: true },
+              { name: "url", label: "链接", type: "url", required: true, placeholder: "https://..." },
+              { name: "tag", label: "标签", type: "text" },
+              { name: "desc", label: "简介", type: "textarea" },
+            ],
+            values: { title: "", url: "", tag: "", desc: "" },
+            submitLabel: "添加",
+            onSubmit: (data) => {
+              const items = load(STORE.links);
+              items.push({ id: uid(), ...data, createdAt: Date.now() });
+              save(STORE.links, items);
+              renderAll();
+              toast("已新增");
+            },
+          });
+        }
+      }
+
+      /* ========== 学习资源 / 效率模板 ========== */
+      function renderRowList(key, listEl, emptyEl, kind) {
+        const items = load(key);
+        listEl.innerHTML = "";
+        if (!items.length) { emptyEl.hidden = false; return; }
+        emptyEl.hidden = true;
+        items.forEach((it) => {
+          const row = document.createElement("article");
+          row.className = "row-card";
+          row.dataset.id = it.id;
+          if (kind === "study") {
+            row.innerHTML = `
+              <header class="row-head">
+                <span class="row-status status-${esc(it.status || "todo")}">${esc(statusText(it.status))}</span>
+                <h3 class="row-title">${esc(it.title || "(未命名)")}</h3>
+                <div class="row-actions">
+                  <button type="button" data-act="edit">编辑</button>
+                  <button type="button" data-act="del">删除</button>
+                </div>
+              </header>
+              <div class="row-meta">
+                ${it.source ? `<span>来源：${esc(it.source)}</span>` : ""}
+                ${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">打开 ↗</a>` : ""}
+              </div>
+              ${it.notes ? `<p class="row-body">${esc(it.notes)}</p>` : ""}
+            `;
+          } else {
+            row.innerHTML = `
+              <header class="row-head">
+                <span class="row-status status-template">模板</span>
+                <h3 class="row-title">${esc(it.name || "(未命名)")}</h3>
+                <div class="row-actions">
+                  <button type="button" data-act="copy">复制</button>
+                  <button type="button" data-act="edit">编辑</button>
+                  <button type="button" data-act="del">删除</button>
+                </div>
+              </header>
+              ${it.use ? `<p class="row-use">用途：${esc(it.use)}</p>` : ""}
+              <pre class="row-body">${esc(it.body || "")}</pre>
+            `;
+          }
+          row.querySelector('[data-act="edit"]').onclick = () => editRow(key, it.id, kind);
+          row.querySelector('[data-act="del"]').onclick = () => {
+            if (confirm("删除这条？")) {
+              save(key, load(key).filter((x) => x.id !== it.id));
+              renderAll();
+              toast("已删除");
+            }
+          };
+          if (kind === "templates") {
+            row.querySelector('[data-act="copy"]').onclick = async () => {
+              try {
+                await navigator.clipboard.writeText(it.body || "");
+                toast("模板已复制");
+              } catch { toast("复制失败，请手动选中"); }
+            };
+          }
+          listEl.appendChild(row);
+        });
+      }
+
+      function statusText(s) {
+        return ({ todo: "待开始", reading: "在学", done: "已完成", backlog: "收藏" }[s] || "待开始");
+      }
+
+      function editRow(key, id, kind) {
+        const cur = load(key).find((x) => x.id === id);
+        if (!cur) return;
+        if (kind === "study") {
+          openModal({
+            title: "编辑 学习资源",
+            fields: [
+              { name: "title", label: "资源名", type: "text", required: true, placeholder: "书 / 课 / 视频名" },
+              { name: "status", label: "状态", type: "select", options: [
+                { value: "todo", label: "待开始" },
+                { value: "reading", label: "在学" },
+                { value: "done", label: "已完成" },
+                { value: "backlog", label: "收藏" },
+              ]},
+              { name: "source", label: "来源", type: "text", placeholder: "作者 / 平台" },
+              { name: "url", label: "链接", type: "url", placeholder: "https://..." },
+              { name: "notes", label: "笔记 / 摘要", type: "textarea" },
+            ],
+            values: cur,
+            onSubmit: (data) => {
+              const all = load(key);
+              const idx = all.findIndex((x) => x.id === id);
+              all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+              save(key, all);
+              renderAll();
+              toast("已保存");
+            },
+          });
+        } else {
+          openModal({
+            title: "编辑 效率模板",
+            fields: [
+              { name: "name", label: "模板名", type: "text", required: true },
+              { name: "use", label: "用途", type: "text", placeholder: "什么场景下用" },
+              { name: "body", label: "内容", type: "textarea", placeholder: "多行..." },
+            ],
+            values: cur,
+            onSubmit: (data) => {
+              const all = load(key);
+              const idx = all.findIndex((x) => x.id === id);
+              all[idx] = { ...cur, ...data, updatedAt: Date.now() };
+              save(key, all);
+              renderAll();
+              toast("已保存");
+            },
+          });
+        }
+      }
+
+      function addRow(kind) {
+        if (kind === "study") {
+          openModal({
+            title: "新增 学习资源",
+            fields: [
+              { name: "title", label: "资源名", type: "text", required: true },
+              { name: "status", label: "状态", type: "select", options: [
+                { value: "todo", label: "待开始" },
+                { value: "reading", label: "在学" },
+                { value: "done", label: "已完成" },
+                { value: "backlog", label: "收藏" },
+              ]},
+              { name: "source", label: "来源", type: "text" },
+              { name: "url", label: "链接", type: "url", placeholder: "https://..." },
+              { name: "notes", label: "笔记", type: "textarea" },
+            ],
+            values: { status: "todo" },
+            submitLabel: "添加",
+            onSubmit: (data) => {
+              const items = load(STORE.study);
+              items.push({ id: uid(), ...data, createdAt: Date.now() });
+              save(STORE.study, items);
+              renderAll();
+              toast("已新增");
+            },
+          });
+        } else {
+          openModal({
+            title: "新增 效率模板",
+            fields: [
+              { name: "name", label: "模板名", type: "text", required: true },
+              { name: "use", label: "用途", type: "text" },
+              { name: "body", label: "内容", type: "textarea", placeholder: "多行文本..." },
+            ],
+            values: { name: "", use: "", body: "" },
+            submitLabel: "添加",
+            onSubmit: (data) => {
+              const items = load(STORE.templates);
+              items.push({ id: uid(), ...data, createdAt: Date.now() });
+              save(STORE.templates, items);
+              renderAll();
+              toast("已新增");
+            },
+          });
+        }
+      }
+
+      /* Import / Export */
+      document.getElementById("r-export").onclick = () => {
+        const dump = {};
+        for (const k of Object.values(STORE)) dump[k] = load(k);
+        const blob = new Blob([JSON.stringify(dump, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `qilin-resources-${today()}.json`;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        toast("已导出");
+      };
+      document.getElementById("r-import").onchange = async (ev) => {
+        const f = ev.target.files[0];
+        if (!f) return;
+        if (!confirm("导入会覆盖当前所有数据，确定继续？")) return;
+        try {
+          const dump = JSON.parse(await f.text());
+          for (const k of Object.values(STORE)) if (Array.isArray(dump[k])) save(k, dump[k]);
+          renderAll();
+          toast("已导入");
+        } catch { toast("文件格式不正确"); }
+      };
+
+      /* Reveal */
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add("is-visible"); revealIO.unobserve(e.target); }
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -8% 0px" });
+      document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => revealIO.observe(el));
+
+      /* Bindings */
+      document.querySelectorAll("[data-add]").forEach((b) => {
+        b.onclick = () => {
+          const k = b.dataset.add;
+          if (k === "tools" || k === "links") addItem(k);
+          else addRow(k);
+        };
+      });
+
+      /* Back to top */
+      const backTop = document.getElementById("back-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 600) backTop.classList.add("is-visible");
+        else backTop.classList.remove("is-visible");
+      }, { passive: true });
+      backTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      function renderAll() {
+        renderCardGrid(STORE.tools, document.getElementById("list-tools"), document.getElementById("empty-tools"), "tools");
+        renderCardGrid(STORE.links, document.getElementById("list-links"), document.getElementById("empty-links"), "links");
+        renderRowList(STORE.study, document.getElementById("list-study-r"), document.getElementById("empty-study"), "study");
+        renderRowList(STORE.templates, document.getElementById("list-templates"), document.getElementById("empty-templates"), "templates");
+      }
+      renderAll();
+    </script>
+  </body>
+</html>

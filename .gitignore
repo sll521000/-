@@ -1,0 +1,12 @@
+# 测试残留
+__write_probe__.txt
+__write_probe__.*
+
+# 编辑器 / 系统垃圾
+.DS_Store
+Thumbs.db
+
+# 日志 / 临时文件
+*.log
+*.tmp
+*.bak
