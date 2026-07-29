@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>小毛孩 · 宠物日常记录本 · 麒麟</title>
+    <meta
+      name="description"
+      content="一个免费的宠物日常记录工具：档案、日记、相册、时间线、健康、体重、饮食、纪念。不收费、不注册、数据全在你本地。部署在 GitHub Pages 就能用。"
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="color-scheme" content="dark light" />
+
+    <link rel="canonical" href="https://qilin-portfolio.vercel.app/pet.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="麒麟" />
+    <meta property="og:title" content="小毛孩 · 宠物日常记录本" />
+    <meta property="og:description" content="免费的宠物记录工具。不收费、不注册、数据本地保存。" />
+    <meta property="og:url" content="https://qilin-portfolio.vercel.app/pet.html" />
+    <meta property="og:image" content="./og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="小毛孩 · 宠物日常记录本" />
+    <meta name="twitter:description" content="免费的宠物记录工具。不收费、不注册、数据本地保存。" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+SC:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./pet.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "小毛孩 · 宠物日常记录本",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Any (static web)",
+        "description": "免费的宠物日常记录工具",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+      }
+    </script>
+  </head>
+
+  <body class="pet-app">
+    <a href="#main" class="skip-link">跳到正文</a>
+
+    <!-- ============ Header ============ -->
+    <header class="site-header" role="banner">
+      <a class="brand" href="./index.html" aria-label="麒麟 · 回到首页">
+        <span class="brand-mark" aria-hidden="true">麒</span>
+        <span>麒麟</span>
+      </a>
+
+      <nav class="nav pet-nav" id="pet-nav" aria-label="小毛孩导航">
+        <button class="is-active" data-tab="home" data-nav>总览</button>
+        <button data-tab="pets" data-nav>宠物</button>
+        <button data-tab="journal" data-nav>记录</button>
+        <button data-tab="gallery" data-nav>相册</button>
+        <button data-tab="timeline" data-nav>时间线</button>
+        <button data-tab="health" data-nav>健康</button>
+        <button data-tab="tribute" data-nav>纪念</button>
+        <button data-tab="settings" data-nav>设置</button>
+      </nav>
+
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="theme-toggle" type="button" aria-label="切换主题" data-theme-toggle>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z" />
+          </svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-label="菜单" aria-expanded="false">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ Onboarding (首次访问引导) ============ -->
+      <section class="pet-onboard" id="pet-onboard" hidden>
+        <div class="pet-onboard__card">
+          <div class="pet-onboard__icon">🐾</div>
+          <h1>欢迎来到小毛孩</h1>
+          <p>一个 <strong>完全免费</strong> 的宠物日常记录工具。<br />数据全在你自己浏览器里，不收费、不注册、不上传。</p>
+          <p class="pet-onboard__sub">马上添加你的第一只小毛孩：</p>
+
+          <form id="onboard-form" class="pet-onboard__form">
+            <label>
+              <span>它叫什么？</span>
+              <input name="name" type="text" required maxlength="20" placeholder="阿橘 / 旺财 / 团子" />
+            </label>
+            <label>
+              <span>是什么小动物？</span>
+              <select name="species" required>
+                <option value="cat">🐱 猫</option>
+                <option value="dog">🐶 狗</option>
+                <option value="rabbit">🐰 兔子</option>
+                <option value="bird">🦜 鸟（鹦鹉/文鸟/其他）</option>
+                <option value="reptile">🦎 爬宠（守宫/龟/蛇）</option>
+                <option value="fish">🐟 鱼</option>
+                <option value="rodent">🐹 鼠（仓鼠/豚鼠/龙猫）</option>
+                <option value="other">🐾 其他</option>
+              </select>
+            </label>
+            <label>
+              <span>品种（可选）</span>
+              <input name="breed" type="text" maxlength="40" placeholder="中华田园橘猫 / 柯基" />
+            </label>
+            <label>
+              <span>生日（不知道就填大概的）</span>
+              <input name="birth" type="date" required />
+            </label>
+            <label>
+              <span>性别（可选）</span>
+              <select name="sex">
+                <option value="">—</option>
+                <option value="female">女孩 ♀</option>
+                <option value="male">男孩 ♂</option>
+              </select>
+            </label>
+            <label class="pet-onboard__upload">
+              <span>头像（可选）</span>
+              <input name="avatar" type="file" accept="image/*" />
+              <small>不上传，只存在你浏览器里</small>
+            </label>
+            <button type="submit">开始记录 →</button>
+          </form>
+
+          <p class="pet-onboard__skip">
+            想先看看？ <button type="button" id="onboard-skip">跳过 · 加载示例数据</button>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ Home / Dashboard ============ -->
+      <section class="pet-view is-active" data-view="home" id="view-home">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">🏠 总览</p>
+          <h1 class="pet-view__title">
+            <span data-bind="greeting">你好，</span>
+            <span data-bind="petCount">0</span> 只小毛孩在陪伴你
+          </h1>
+          <p class="pet-view__lead" data-bind="summary"></p>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="pet-stat-row">
+          <article class="pet-stat-card" data-stat="entries">
+            <div class="pet-stat-card__num">0</div>
+            <div class="pet-stat-card__label">条日记</div>
+          </article>
+          <article class="pet-stat-card" data-stat="photos">
+            <div class="pet-stat-card__num">0</div>
+            <div class="pet-stat-card__label">张照片</div>
+          </article>
+          <article class="pet-stat-card" data-stat="events">
+            <div class="pet-stat-card__num">0</div>
+            <div class="pet-stat-card__label">个里程碑</div>
+          </article>
+          <article class="pet-stat-card" data-stat="vaccines">
+            <div class="pet-stat-card__num">0</div>
+            <div class="pet-stat-card__label">针疫苗</div>
+          </article>
+        </div>
+
+        <!-- 宠物卡片网格 -->
+        <div class="pet-pets-grid" id="pets-grid"></div>
+
+        <!-- 最近日记 -->
+        <div class="pet-recent">
+          <h2 class="pet-section__title">📝 最近记录</h2>
+          <ul class="pet-entry-list" id="recent-entries"></ul>
+        </div>
+
+        <!-- 即将到来的纪念日 -->
+        <div class="pet-upcoming">
+          <h2 class="pet-section__title">🎂 即将到来</h2>
+          <ul class="pet-upcoming__list" id="upcoming-list"></ul>
+        </div>
+
+        <div class="pet-quote">
+          <blockquote>"它不会说话，但它听得懂你所有的心事。"</blockquote>
+        </div>
+      </section>
+
+      <!-- ============ Pets (档案管理) ============ -->
+      <section class="pet-view" data-view="pets" id="view-pets">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">🐾 我的宠物</p>
+          <h1 class="pet-view__title">档案管理</h1>
+          <p class="pet-view__lead">支持多只宠物 · 每只独立档案</p>
+        </div>
+
+        <div class="pet-toolbar">
+          <button class="pet-btn pet-btn--primary" id="btn-add-pet">+ 添加新宠物</button>
+        </div>
+
+        <div class="pet-pets-grid" id="pets-grid-manage"></div>
+
+        <!-- 宠物表单 modal -->
+        <div class="pet-modal" id="pet-modal" hidden>
+          <div class="pet-modal__card">
+            <button class="pet-modal__close" data-close>×</button>
+            <h2 id="pet-modal-title">添加新宠物</h2>
+            <form id="pet-form">
+              <input type="hidden" name="id" />
+              <div class="pet-form-grid">
+                <label><span>名字 *</span><input name="name" type="text" required maxlength="20" /></label>
+                <label>
+                  <span>物种 *</span>
+                  <select name="species" required>
+                    <option value="cat">🐱 猫</option>
+                    <option value="dog">🐶 狗</option>
+                    <option value="rabbit">🐰 兔子</option>
+                    <option value="bird">🦜 鸟</option>
+                    <option value="reptile">🦎 爬宠</option>
+                    <option value="fish">🐟 鱼</option>
+                    <option value="rodent">🐹 鼠</option>
+                    <option value="other">🐾 其他</option>
+                  </select>
+                </label>
+                <label><span>品种</span><input name="breed" type="text" maxlength="40" /></label>
+                <label>
+                  <span>性别</span>
+                  <select name="sex">
+                    <option value="">—</option>
+                    <option value="female">女孩 ♀</option>
+                    <option value="male">男孩 ♂</option>
+                  </select>
+                </label>
+                <label><span>毛色</span><input name="color" type="text" maxlength="30" /></label>
+                <label><span>生日 *</span><input name="birth" type="date" required /></label>
+                <label><span>离世日期（如还在就空着）</span><input name="passed" type="date" /></label>
+                <label><span>来源</span>
+                  <select name="source">
+                    <option value="">—</option>
+                    <option>领养</option><option>救助</option><option>购买</option>
+                    <option>出生</option><option>朋友赠送</option><option>其他</option>
+                  </select>
+                </label>
+                <label><span>芯片号（可选）</span><input name="microchip" type="text" maxlength="20" /></label>
+                <label><span>体重（kg）</span><input name="weight" type="number" step="0.01" min="0" max="500" /></label>
+                <label class="pet-form-full">
+                  <span>一句话介绍</span>
+                  <input name="quote" type="text" maxlength="60" placeholder="比如：陪了我整个大学的小猫" />
+                </label>
+                <label class="pet-form-full">
+                  <span>头像</span>
+                  <input name="avatar" type="file" accept="image/*" />
+                </label>
+              </div>
+              <div class="pet-form-actions">
+                <button type="button" class="pet-btn" data-close>取消</button>
+                <button type="submit" class="pet-btn pet-btn--primary">保存</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Journal (日记/心情) ============ -->
+      <section class="pet-view" data-view="journal" id="view-journal">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">📔 记录</p>
+          <h1 class="pet-view__title">日记 & 心情</h1>
+          <p class="pet-view__lead">写下今天的小事，附上照片和心情标记</p>
+        </div>
+
+        <div class="pet-toolbar">
+          <select id="journal-pet-filter" class="pet-select"></select>
+          <button class="pet-btn pet-btn--primary" id="btn-add-entry">+ 写新日记</button>
+        </div>
+
+        <!-- 心情打卡 -->
+        <div class="pet-mood-pad" id="mood-pad">
+          <h3>今天心情：</h3>
+          <div class="pet-mood-pad__opts">
+            <button data-mood="happy">😺 开心</button>
+            <button data-mood="sleepy">😴 慵懒</button>
+            <button data-mood="playful">🐾 爱玩</button>
+            <button data-mood="clingy">🧡 黏人</button>
+            <button data-mood="grumpy">😾 傲娇</button>
+            <button data-mood="sick">🤒 不舒服</button>
+          </div>
+        </div>
+
+        <!-- 日记流 -->
+        <ul class="pet-entry-list pet-entry-list--full" id="entry-list"></ul>
+
+        <!-- 日记 modal -->
+        <div class="pet-modal" id="entry-modal" hidden>
+          <div class="pet-modal__card">
+            <button class="pet-modal__close" data-close>×</button>
+            <h2>写一条日记</h2>
+            <form id="entry-form">
+              <input type="hidden" name="id" />
+              <label><span>宠物</span><select name="petId" required></select></label>
+              <label><span>日期</span><input name="date" type="date" required /></label>
+              <label>
+                <span>类型</span>
+                <select name="type">
+                  <option value="diary">📝 日常</option>
+                  <option value="first">⭐ 第一次</option>
+                  <option value="milestone">🎉 里程碑</option>
+                  <option value="funny">😂 趣事</option>
+                  <option value="tribute">🕯️ 追思</option>
+                </select>
+              </label>
+              <label><span>标题</span><input name="title" type="text" maxlength="60" placeholder="今天第一次吃罐头" /></label>
+              <label class="pet-form-full">
+                <span>正文</span>
+                <textarea name="content" rows="6" maxlength="2000" placeholder="想记录的事……"></textarea>
+              </label>
+              <label class="pet-form-full">
+                <span>附图（可多选）</span>
+                <input name="photos" type="file" accept="image/*" multiple />
+              </label>
+              <label class="pet-form-full">
+                <span>标签（逗号分隔）</span>
+                <input name="tags" type="text" maxlength="100" placeholder="第一次, 罐头, 满足" />
+              </label>
+              <div class="pet-form-actions">
+                <button type="button" class="pet-btn" data-close>取消</button>
+                <button type="submit" class="pet-btn pet-btn--primary">保存</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Gallery ============ -->
+      <section class="pet-view" data-view="gallery" id="view-gallery">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">📸 相册</p>
+          <h1 class="pet-view__title">陪伴相册</h1>
+          <p class="pet-view__lead">所有日记里的图片，自动按时间排序</p>
+        </div>
+
+        <div class="pet-toolbar">
+          <select id="gallery-pet-filter" class="pet-select"></select>
+          <select id="gallery-sort" class="pet-select">
+            <option value="newest">最新优先</option>
+            <option value="oldest">最旧优先</option>
+            <option value="random">随机</option>
+          </select>
+        </div>
+
+        <div class="pet-gallery-grid" id="gallery-grid"></div>
+
+        <!-- 空态 -->
+        <div class="pet-empty" id="gallery-empty">
+          <p>📷 还没有照片<br /><small>写日记时附图就会出现在这里</small></p>
+        </div>
+      </section>
+
+      <!-- ============ Timeline ============ -->
+      <section class="pet-view" data-view="timeline" id="view-timeline">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">⏳ 时间线</p>
+          <h1 class="pet-view__title">生命时间线</h1>
+          <p class="pet-view__lead">日记里的里程碑、第一次、纪念日，自动整理</p>
+        </div>
+
+        <div class="pet-toolbar">
+          <select id="timeline-pet-filter" class="pet-select"></select>
+        </div>
+
+        <ol class="pet-timeline" id="timeline-list"></ol>
+      </section>
+
+      <!-- ============ Health ============ -->
+      <section class="pet-view" data-view="health" id="view-health">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">💉 健康</p>
+          <h1 class="pet-view__title">健康档案</h1>
+          <p class="pet-view__lead">疫苗 · 驱虫 · 体检 · 用药 · 体重曲线</p>
+        </div>
+
+        <div class="pet-toolbar">
+          <select id="health-pet-filter" class="pet-select"></select>
+          <button class="pet-btn pet-btn--primary" id="btn-add-health">+ 记录健康事件</button>
+        </div>
+
+        <!-- 体重曲线 -->
+        <div class="pet-weight-chart-card">
+          <h3>⚖️ 体重曲线</h3>
+          <div id="weight-chart"></div>
+        </div>
+
+        <!-- 健康记录 -->
+        <ul class="pet-health-list" id="health-list"></ul>
+
+        <!-- 健康 modal -->
+        <div class="pet-modal" id="health-modal" hidden>
+          <div class="pet-modal__card">
+            <button class="pet-modal__close" data-close>×</button>
+            <h2>添加健康记录</h2>
+            <form id="health-form">
+              <input type="hidden" name="id" />
+              <label><span>宠物</span><select name="petId" required></select></label>
+              <label>
+                <span>类型 *</span>
+                <select name="type" required>
+                  <option value="vaccine">💉 疫苗</option>
+                  <option value="deworm">💊 驱虫</option>
+                  <option value="checkup">🩺 体检</option>
+                  <option value="medication">💊 用药</option>
+                  <option value="condition">🤒 病症</option>
+                  <option value="weight">⚖️ 称重</option>
+                </select>
+              </label>
+              <label><span>日期 *</span><input name="date" type="date" required /></label>
+              <label><span>名称 *</span><input name="name" type="text" required maxlength="50" placeholder="狂犬疫苗 / 体内驱虫 / 体重 4.5kg" /></label>
+              <label><span>下次提醒（可选）</span><input name="nextDate" type="date" /></label>
+              <label><span>医院/医生</span><input name="vet" type="text" maxlength="50" /></label>
+              <label class="pet-form-full"><span>备注</span><textarea name="notes" rows="3" maxlength="500"></textarea></label>
+              <div class="pet-form-actions">
+                <button type="button" class="pet-btn" data-close>取消</button>
+                <button type="submit" class="pet-btn pet-btn--primary">保存</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Tribute (纪念) ============ -->
+      <section class="pet-view" data-view="tribute" id="view-tribute">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">🕯️ 纪念</p>
+          <h1 class="pet-view__title">追思 / 告别</h1>
+          <p class="pet-view__lead">已离世的小毛孩专属空间。点一根蜡烛，留一句话</p>
+        </div>
+
+        <div class="pet-toolbar">
+          <select id="tribute-pet-filter" class="pet-select"></select>
+        </div>
+
+        <div class="pet-tribute-stage" id="tribute-stage" hidden>
+          <button class="pet-tribute-flame" id="tribute-light-btn" aria-label="点一根蜡烛">
+            <span class="pet-tribute-flame__icon" aria-hidden="true"></span>
+            <span class="pet-tribute-flame__label">点一根蜡烛</span>
+          </button>
+          <p class="pet-tribute-counter">
+            已有 <strong id="tribute-counter">0</strong> 人为它点过蜡烛
+          </p>
+        </div>
+
+        <div class="pet-tribute-empty" id="tribute-empty">
+          <p>这一页专为已离世的小毛孩准备。<br />在 <strong>宠物档案</strong> 里填上离世日期，就会激活这里。</p>
+        </div>
+
+        <!-- 告别信 -->
+        <article class="pet-tribute-letter">
+          <h3>✉️ 给它写一封信</h3>
+          <textarea id="tribute-letter" rows="6" placeholder="亲爱的阿橘：&#10;&#10;..."></textarea>
+          <button class="pet-btn pet-btn--primary" id="tribute-letter-save">保存</button>
+        </article>
+
+        <!-- 留言墙 -->
+        <div class="pet-tribute-wall">
+          <h3>💬 留言墙</h3>
+          <form id="tribute-msg-form" class="pet-tribute-msg-form">
+            <input type="text" name="name" maxlength="20" placeholder="你的称呼（可选）" />
+            <textarea name="msg" rows="2" maxlength="200" required placeholder="想对它们说的话……"></textarea>
+            <button type="submit" class="pet-btn">寄一束光</button>
+          </form>
+          <ul id="tribute-wall" class="pet-tribute-wall__list"></ul>
+        </div>
+      </section>
+
+      <!-- ============ Settings ============ -->
+      <section class="pet-view" data-view="settings" id="view-settings">
+        <div class="pet-view__head">
+          <p class="pet-section__eyebrow">⚙️ 设置</p>
+          <h1 class="pet-view__title">数据 & 备份</h1>
+          <p class="pet-view__lead">你的数据只存在你自己的浏览器。建议定期导出备份</p>
+        </div>
+
+        <div class="pet-settings-grid">
+          <article class="pet-settings-card">
+            <h3>📤 导出全部数据</h3>
+            <p>下载一个 JSON 文件，包含所有宠物、日记、健康记录。可以在另一台设备上导入恢复。</p>
+            <button class="pet-btn pet-btn--primary" id="btn-export">导出 JSON</button>
+          </article>
+
+          <article class="pet-settings-card">
+            <h3>📥 导入数据</h3>
+            <p>从之前导出的 JSON 文件恢复。会覆盖当前数据。</p>
+            <input type="file" id="btn-import" accept=".json,application/json" />
+          </article>
+
+          <article class="pet-settings-card">
+            <h3>🖨️ 导出 PDF 打印</h3>
+            <p>把整页打包成可打印的 PDF。适合保存相册、纪念册。</p>
+            <button class="pet-btn" id="btn-print">🖨️ 打印当前页面</button>
+          </article>
+
+          <article class="pet-settings-card">
+            <h3>🔗 生成分享链接</h3>
+            <p>把当前数据打包成一个可分享的 URL（数据编码在链接里，仅适合小数据集）。</p>
+            <button class="pet-btn" id="btn-share">生成分享链接</button>
+            <textarea id="share-link" rows="3" hidden></textarea>
+          </article>
+
+          <article class="pet-settings-card">
+            <h3>🎨 主题</h3>
+            <p>跟随系统 / 暗色 / 亮色</p>
+            <div class="pet-theme-pick">
+              <button data-theme-pick="auto">跟随系统</button>
+              <button data-theme-pick="dark">暗色</button>
+              <button data-theme-pick="light">亮色</button>
+            </div>
+          </article>
+
+          <article class="pet-settings-card pet-settings-card--danger">
+            <h3>⚠️ 危险操作</h3>
+            <p>清空所有数据，恢复到第一次访问的状态。</p>
+            <button class="pet-btn pet-btn--danger" id="btn-clear">清空所有数据</button>
+          </article>
+
+          <article class="pet-settings-card pet-settings-card--info">
+            <h3>❤️ 关于</h3>
+            <p>这是一个 <strong>完全免费</strong> 的工具，部署在 GitHub Pages。<br />不收费、不注册、不上传服务器。所有数据只存在你自己的浏览器里。</p>
+            <p><small>版本 v0.1 · MIT License</small></p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="pet-lightbox" id="pet-lightbox" aria-hidden="true">
+      <button class="pet-lightbox__close" aria-label="关闭">×</button>
+      <button class="pet-lightbox__prev" aria-label="上一张">‹</button>
+      <button class="pet-lightbox__next" aria-label="下一张">›</button>
+      <figure>
+        <img alt="" />
+        <figcaption></figcaption>
+      </figure>
+    </div>
+
+    <!-- Toast -->
+    <div class="pet-toast" id="pet-toast" hidden></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="./pet.js" defer></script>
+  </body>
+</html>

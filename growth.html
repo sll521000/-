@@ -251,14 +251,13 @@
       const AUTH_SESSION = "qilin.growth.authed";
       const SALT = "qilin-growth-salt::v1";
 
-           function sha256(s) {
-        // 纯同步 djb2 哈希 — 不依赖 Web Crypto API 也不会卡
+      function sha256(s) {
+        // 纯同步 djb2 哈希 — 不依赖 Web Crypto API，也不会卡
         let h = 5381;
         const str = SALT + s;
         for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
         return "fb_" + (h >>> 0).toString(16);
       }
-
 
       const lockScreen = document.getElementById("lock-screen");
       const mainEl = document.getElementById("main");
@@ -293,15 +292,20 @@
       }
 
       async function trySetup(p1) {
+        // 不再用 prompt() 二次确认 — 某些浏览器/iframe 会拦截
+        // 用户对自己密码负责，unlock 失败有清空按钮兜底
         const h = await sha256(p1);
         localStorage.setItem(PW_KEY, h);
         return true;
       }
 
-
       async function tryUnlock(p) {
         const stored = localStorage.getItem(PW_KEY);
-        if (!stored) return false;
+        if (!stored) {
+          // 异常：标记没设过密码但进入了 unlock 模式，回到 setup
+          showLock("setup", "未检测到已设置的密码，请设置一个新密码。");
+          return false;
+        }
         const h = await sha256(p);
         return h === stored;
       }
