@@ -2,61 +2,82 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="description" content="麒麟的个人工作台：成长、AI、Skill、工具与连接。">
-<meta name="theme-color" content="#03040b">
-<title>麒麟 · Personal OS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="麒麟的个人工作台：记录成长，整理工具，分享 AI 实践与可复用的 Skill。">
+<meta name="theme-color" content="#f6f5f1">
+<title>麒麟 · 个人工作台</title>
 <link rel="icon" href="./qilin-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<main class="deck" id="deck" aria-label="麒麟个人工作台">
-<header class="deck-header">
-<a class="brand" href="#slide-0" data-go="0"><img src="./qilin-mark.svg" alt="麒麟标志"><span><strong>麒麟</strong><small>PERSONAL OS</small></span></a>
-<div class="deck-meta"><span id="slide-label">01 / 05</span><span class="live-dot"></span><span>持续构建中</span></div>
+<header class="site-header">
+  <a class="brand" href="#top"><img src="./qilin-mark.svg" alt="麒麟头像"><span>麒麟<small>PERSONAL WORKSPACE</small></span></a>
+  <nav class="main-nav" aria-label="主导航">
+    <a href="#growth">个人成长</a><a href="#station">中转站</a><a href="#gpt">GPT</a><a href="#skills">Skill 合集</a><a href="#image-lab">万物成像</a><a href="#contact">联系我</a>
+  </nav>
+  <a class="nav-cta" href="#gpt">进入 GPT <span>↗</span></a>
 </header>
 
-<section class="slide is-active" id="slide-0" data-slide="0" aria-label="首页">
-<div class="slide-inner intro-slide">
-<div class="intro-copy"><p class="eyebrow">A PERSONAL OPERATING DESK / 2026</p><h1>把每天的<br><em>成长与工具</em><br>放在同一个入口。</h1><p class="lede">我是麒麟。这里记录我如何生活、工作、阅读和使用 AI，也整理真正会反复用到的入口。</p><div class="intro-actions"><button class="primary-button" type="button" data-next>开始浏览 <span>→</span></button><span class="hint">方向键 / 空格键切换</span></div></div>
-<div class="intro-card"><img src="./qilin-mark.svg" alt="麒麟标志"><p class="card-label">CURRENT MODE</p><h2>持续构建中</h2><div class="intro-tags"><span>长期复盘</span><span>AI 实践</span><span>能力沉淀</span></div><p class="card-note">记录行动，整理能力，留下可以回看的轨迹。</p></div>
-</div>
+<main id="top">
+<section class="hero section-shell">
+  <div class="hero-copy">
+    <p class="kicker">CREATOR DESK / 2026</p>
+    <h1>把正在做的事，<br><em>整理成一个入口。</em></h1>
+    <p class="hero-lede">我是麒麟。这里记录个人成长、工作复盘、阅读思考，也整理我每天真正会用到的 AI 工具与 Skill。</p>
+    <div class="hero-actions"><a class="button button-dark" href="#systems">开始浏览 <span>↓</span></a><a class="text-link" href="#contact">联系我 <span>↗</span></a></div>
+  </div>
+  <div class="hero-profile">
+    <div class="portrait-frame"><img src="./qilin-mark.svg" alt="麒麟标志"></div>
+    <p class="profile-label">ABOUT THIS DESK</p>
+    <h2>持续记录，持续复盘。</h2>
+    <p>把零散的经历变成可回看的经验，把好用的工具变成自己的工作流。</p>
+    <div class="profile-tags"><span>长期成长</span><span>AI 实践</span><span>能力沉淀</span></div>
+  </div>
 </section>
 
-<section class="slide" id="slide-1" data-slide="1" aria-label="个人成长">
-<div class="slide-inner"><div class="slide-title"><p class="eyebrow">01 / PERSONAL GROWTH</p><h2>把经历变成<br><em>可复用的经验。</em></h2><p>每日、每周、每月、阶段总结，阅读笔记和工作计划，都在这里。</p></div><div class="growth-preview"><div class="private-card"><span class="lock-icon">✦</span><div><p class="eyebrow">PRIVATE GROWTH LOG</p><h3>个人成长记录</h3><p>输入密码后进入你的复盘空间。</p></div><form id="growth-form"><input id="growth-password" type="password" inputmode="numeric" maxlength="4" placeholder="4 位密码" autocomplete="off"><button type="submit">进入</button></form><small id="growth-message">内容只在当前浏览器内验证</small></div><div class="growth-list"><span>DAILY</span><span>WEEKLY</span><span>MONTHLY</span><span>STAGE</span><span>READING</span><span>WORK PLAN</span></div></div></div>
+<section class="proof section-shell">
+  <div><strong>01</strong><span>个人成长</span><small>每天留下可回看的轨迹</small></div>
+  <div><strong>02</strong><span>工具中台</span><small>把高频入口放在手边</small></div>
+  <div><strong>03</strong><span>能力合集</span><small>让方法可以被重复调用</small></div>
 </section>
 
-<section class="slide" id="slide-2" data-slide="2" aria-label="中转站和 GPT">
-<div class="slide-inner"><div class="slide-title compact-title"><p class="eyebrow">02 / TOOLS & AI</p><h2>需要的时候，<br><em>一跳就到。</em></h2><p>把高频入口放在手边，把工具变成自己的工作流。</p></div><div class="dual-grid"><div class="panel station-panel"><div class="panel-head"><span>中转站</span><small>TRANSFER STATION</small></div><a class="resource-link" href="https://www.yun-shu.top/" target="_blank" rel="noopener"><span>01</span><div><strong>云枢 · AI 模型服务</strong><small>AI 模型与工具中转入口</small></div><b>↗</b></a><a class="resource-link" href="https://www.notion.so/" target="_blank" rel="noopener"><span>02</span><div><strong>Notion</strong><small>笔记、项目与知识库</small></div><b>↗</b></a><a class="resource-link" href="https://github.com/" target="_blank" rel="noopener"><span>03</span><div><strong>GitHub</strong><small>代码、项目与开源资源</small></div><b>↗</b></a></div><div class="panel gpt-panel"><div class="panel-head"><span>GPT</span><small>AI WORKSPACE</small></div><a class="resource-link" href="https://chatgpt.com/" target="_blank" rel="noopener"><span>01</span><div><strong>GPT 入口</strong><small>直接打开 ChatGPT</small></div><b>↗</b></a><a class="resource-link" href="https://chatgpt.com/gpts" target="_blank" rel="noopener"><span>02</span><div><strong>GPT 合作 / GPTs</strong><small>探索与合作 GPT</small></div><b>↗</b></a><a class="resource-link" href="https://platform.openai.com/playground" target="_blank" rel="noopener"><span>03</span><div><strong>AI 工作流</strong><small>在 Playground 里实验</small></div><b>↗</b></a></div></div></div>
+<section class="section-shell intro-section" id="systems">
+  <div class="section-heading"><p class="kicker">MAIN SYSTEMS</p><h2>六个入口，<br><em>分别解决六类问题。</em></h2></div>
+  <div class="section-intro"><p>首页只做总入口。成长、工具、GPT、Skill、视觉实验和联系入口，各自保持清楚，访问者不用猜这里有什么。</p><a class="text-link" href="#growth">从个人成长开始 <span>↗</span></a></div>
+  <div class="system-grid">
+    <a class="system-card featured" href="#growth"><span class="card-number">01</span><h3>个人成长</h3><p>每日、每周、每月和阶段复盘，也包括阅读笔记与工作计划。</p><b>进入成长记录 ↗</b></a>
+    <a class="system-card" href="#station"><span class="card-number">02</span><h3>中转站</h3><p>常用服务、项目资料和高频入口，打开就能用。</p><b>查看中转入口 ↗</b></a>
+    <a class="system-card" href="#gpt"><span class="card-number">03</span><h3>GPT</h3><p>ChatGPT、GPTs 和 AI 工作流，集中放在这里。</p><b>打开 GPT 工作区 ↗</b></a>
+    <a class="system-card" href="#skills"><span class="card-number">04</span><h3>Skill 合集</h3><p>把内容、发布、数据和 Agent 能力整理成目录。</p><b>浏览 Skill 清单 ↗</b></a>
+    <a class="system-card" href="#image-lab"><span class="card-number">05</span><h3>万物成像</h3><p>图像创作、视觉实验和灵感工具的专属入口。</p><b>进入图像工作台 ↗</b></a>
+    <a class="system-card" href="#contact"><span class="card-number">06</span><h3>联系我</h3><p>合作、交流、资源互换，从这里找到我。</p><b>保持连接 ↗</b></a>
+  </div>
 </section>
 
-<section class="slide" id="slide-3" data-slide="3" aria-label="Skill 合集和万物成像">
-<div class="slide-inner"><div class="slide-title compact-title"><p class="eyebrow">03 / SKILLS & IMAGE LAB</p><h2>能力和想法，<br><em>都要能被调用。</em></h2><p>把技能整理成目录，把创意直接变成画面。</p></div><div class="dual-grid"><div class="panel skill-panel"><div class="panel-head"><span>Skill 合集</span><small>OPEN SOURCE INDEX</small></div><div class="skill-search"><input id="skill-search" type="search" placeholder="搜索 Skill"><div class="filter-row"><button class="filter is-active" data-filter="all">全部</button><button class="filter" data-filter="writing">文案</button><button class="filter" data-filter="media">发布</button><button class="filter" data-filter="data">数据</button></div></div><div class="skill-items" id="skill-items"><a data-category="writing" href="https://github.com/dontbesilent2025/dbskill" target="_blank" rel="noopener"><strong>dbskill</strong><small>选题 / 标题 / 内容诊断</small><b>↗</b></a><a data-category="media" href="https://github.com/wechatsync/Wechatsync" target="_blank" rel="noopener"><strong>Wechatsync</strong><small>多平台内容同步</small><b>↗</b></a><a data-category="data" href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener"><strong>Agent-Reach</strong><small>让 Agent 读取多平台信息</small><b>↗</b></a></div><a class="panel-footer-link" href="https://zimeiti-skills.netlify.app/" target="_blank" rel="noopener">查看完整 Skill 清单 ↗</a></div><div class="panel image-panel"><div class="panel-head"><span>万物成像</span><small>IMAGE LAB</small></div><div class="image-quote">让想法<br><em>变成画面。</em></div><a class="image-link" href="https://wwdesign.cn/studio/?ref=ww-yun-shutop" target="_blank" rel="noopener"><span>01</span><div><strong>万物成像 Studio</strong><small>图像创作与视觉实验工作台</small></div><b>打开 ↗</b></a><a class="image-link" href="https://www.midjourney.com/" target="_blank" rel="noopener"><span>02</span><div><strong>Midjourney</strong><small>视觉探索与风格实验</small></div><b>打开 ↗</b></a></div></div></div>
-</section>
+<section class="content-band" id="growth"><div class="section-shell content-layout">
+  <div class="section-heading"><p class="kicker">01 / PERSONAL GROWTH</p><h2>把经历变成<br><em>可复用的经验。</em></h2><p class="section-copy">这是只属于我的成长空间。输入密码后，进入更具体的记录。</p><form class="unlock-form" id="growth-form"><input id="growth-password" type="password" maxlength="4" inputmode="numeric" placeholder="输入 4 位密码"><button class="button button-dark" type="submit">进入记录</button><small id="growth-message">私人内容，仅在当前浏览器验证</small></form></div>
+  <div class="growth-topics"><a href="growth.html#daily"><span>DAILY</span><strong>每日复盘</strong><small>今天做了什么，哪里可以更好。</small></a><a href="growth.html#weekly"><span>WEEKLY</span><strong>每周回看</strong><small>从一周的动作里找出真正的进展。</small></a><a href="growth.html#monthly"><span>MONTHLY</span><strong>每月总结</strong><small>整理结果，校准下个月的方向。</small></a><a href="growth.html#stage"><span>STAGE</span><strong>阶段思考</strong><small>把重要转折写下来，给未来的自己看。</small></a><a href="growth.html#reading"><span>READING</span><strong>阅读笔记</strong><small>不只收藏观点，更记录它改变了什么。</small></a><a href="growth.html#work"><span>WORK PLAN</span><strong>工作计划</strong><small>今晚写完明天要做的事，明天只负责执行。</small></a></div>
+</div></section>
 
-<section class="slide" id="slide-4" data-slide="4" aria-label="联系我">
-<div class="slide-inner contact-slide"><div class="contact-copy"><p class="eyebrow">05 / CONTACT</p><h2>保持连接，<br><em>一起做点有意思的事。</em></h2><p>合作、交流、资源互换，或者只是聊聊正在做的事情，都可以从这里找到我。</p></div><div class="contact-panel"><a href="#" class="contact-link placeholder" data-placeholder><span>WX</span><div><strong>微信</strong><small>微信号待填写</small></div><b>↗</b></a><a href="#" class="contact-link placeholder" data-placeholder><span>𝕏</span><div><strong>X / Twitter</strong><small>账号待填写</small></div><b>↗</b></a><a href="#" class="contact-link placeholder" data-placeholder><span>TG</span><div><strong>Telegram</strong><small>账号待填写</small></div><b>↗</b></a><a href="#" class="contact-link placeholder" data-placeholder><span>@</span><div><strong>Email</strong><small>邮箱待填写</small></div><b>↗</b></a></div></div>
-</section>
+<section class="section-shell link-section" id="station"><div class="section-heading"><p class="kicker">02 / TRANSFER STATION</p><h2>需要的时候，<br><em>一跳就到。</em></h2></div><div class="link-list"><a href="https://www.yun-shu.top/" target="_blank" rel="noopener"><span>01</span><div><strong>云枢 · AI 模型服务</strong><small>AI 模型与工具中转入口，点击直接进入。</small></div><b>打开 ↗</b></a><a href="https://www.notion.so/" target="_blank" rel="noopener"><span>02</span><div><strong>Notion</strong><small>笔记、项目和知识库的工作空间。</small></div><b>打开 ↗</b></a><a href="https://github.com/" target="_blank" rel="noopener"><span>03</span><div><strong>GitHub</strong><small>代码、项目与开源资源。</small></div><b>打开 ↗</b></a></div></section>
 
-<footer class="deck-footer"><span>© 2026 麒麟</span><span>持续构建，持续复盘。</span></footer>
-<nav class="dots" aria-label="页面导航"><button class="dot is-active" data-dot="0" aria-label="第 1 屏"></button><button class="dot" data-dot="1" aria-label="第 2 屏"></button><button class="dot" data-dot="2" aria-label="第 3 屏"></button><button class="dot" data-dot="3" aria-label="第 4 屏"></button><button class="dot" data-dot="4" aria-label="第 5 屏"></button></nav>
-<div class="toast" role="status" aria-live="polite">这个联系方式还没有填写。</div>
+<section class="content-band warm" id="gpt"><div class="section-shell content-layout"><div class="section-heading"><p class="kicker">03 / GPT WORKSPACE</p><h2>把 AI 放在<br><em>真正的工作里。</em></h2><p class="section-copy">这里放我的 GPT 入口和后续会持续补充的 AI 工作流。</p></div><div class="link-list compact"><a href="https://chatgpt.com/" target="_blank" rel="noopener"><span>01</span><div><strong>ChatGPT</strong><small>直接进入 GPT 工作区。</small></div><b>打开 ↗</b></a><a href="https://chatgpt.com/gpts" target="_blank" rel="noopener"><span>02</span><div><strong>GPTs</strong><small>探索、使用和合作 GPT。</small></div><b>打开 ↗</b></a><a href="https://platform.openai.com/playground" target="_blank" rel="noopener"><span>03</span><div><strong>AI 工作流</strong><small>在 Playground 里测试想法。</small></div><b>打开 ↗</b></a></div></div></section>
+
+<section class="section-shell skills-section" id="skills"><div class="section-heading"><p class="kicker">04 / SKILL COLLECTION</p><h2>收藏不如调用，<br><em>方法要能落地。</em></h2></div><div class="section-intro"><p>Skill 合集会按照自媒体、跨境、内容、数据等方向持续补充，先从下面几个入口开始。</p><a class="text-link" href="https://zimeiti-skills.netlify.app/" target="_blank" rel="noopener">查看完整合集 <span>↗</span></a></div><div class="skill-grid"><a href="https://zimeiti-skills.netlify.app/" target="_blank" rel="noopener"><span>CONTENT</span><h3>自媒体 Skill</h3><p>选题、标题、脚本、发布和复盘。</p><b>进入合集 ↗</b></a><a href="https://zimeiti-skills.netlify.app/" target="_blank" rel="noopener"><span>GLOBAL</span><h3>跨境 Skill</h3><p>面向跨境业务的工具与工作方法。</p><b>进入合集 ↗</b></a><a href="https://zimeiti-skills.netlify.app/" target="_blank" rel="noopener"><span>AGENT</span><h3>Agent Skill</h3><p>让 AI 更稳定地读取、思考和执行。</p><b>进入合集 ↗</b></a><a href="https://zimeiti-skills.netlify.app/" target="_blank" rel="noopener"><span>TOOLS</span><h3>工具 Skill</h3><p>我自己反复使用的效率工具和流程。</p><b>进入合集 ↗</b></a></div></section>
+
+<section class="content-band image-section" id="image-lab"><div class="section-shell content-layout"><div class="section-heading"><p class="kicker">05 / IMAGE LAB</p><h2>让想法，<br><em>变成画面。</em></h2><p class="section-copy">万物成像是视觉实验区，后续会放更多图像工具与作品入口。</p></div><div class="image-links"><a href="https://wwdesign.cn/studio/?ref=ww-yun-shutop" target="_blank" rel="noopener"><span>01</span><div><strong>万物成像 Studio</strong><small>图像创作与视觉实验工作台。</small></div><b>打开 ↗</b></a><a href="https://www.midjourney.com/" target="_blank" rel="noopener"><span>02</span><div><strong>Midjourney</strong><small>视觉探索与风格实验。</small></div><b>打开 ↗</b></a></div></div></section>
+
+<section class="section-shell worldview"><div class="section-heading"><p class="kicker">WORLDVIEW</p><h2>这里不是简历，<br><em>是正在发生的生活。</em></h2></div><div class="thought-grid"><article><span>观点 01</span><h3>知道没做到，等于还不知道。</h3><p>别把收藏当行动。先做一个十分钟内能开始的动作，再回来复盘。</p></article><article><span>观点 02</span><h3>一个人 + AI，可以拥有更大的杠杆。</h3><p>AI 不是拿来崇拜的，是拿来解决现实问题、放大个人能力的。</p></article><article><span>观点 03</span><h3>长期主义不是慢，是持续更新。</h3><p>每天留下一点真实记录，时间会把零散动作变成自己的系统。</p></article></div></section>
+
+<section class="content-band contact-section" id="contact"><div class="section-shell content-layout"><div class="section-heading"><p class="kicker">06 / CONTACT</p><h2>保持连接，<br><em>一起做点有意思的事。</em></h2><p class="section-copy">合作、交流、资源互换，或者只是聊聊正在做的事情，都可以从这里找到我。</p></div><div class="contact-links"><a href="#" data-placeholder><span>WX</span><div><strong>微信</strong><small>微信号待填写</small></div><b>↗</b></a><a href="#" data-placeholder><span>𝕏</span><div><strong>X / Twitter</strong><small>账号待填写</small></div><b>↗</b></a><a href="#" data-placeholder><span>TG</span><div><strong>Telegram</strong><small>账号待填写</small></div><b>↗</b></a><a href="#" data-placeholder><span>@</span><div><strong>Email</strong><small>邮箱待填写</small></div><b>↗</b></a></div></div></section>
 </main>
+<footer class="site-footer section-shell"><span>© 2026 麒麟</span><span>持续构建，持续复盘。</span><a href="#top">回到顶部 ↑</a></footer>
+<div class="toast" role="status" aria-live="polite">联系方式还没有填写。</div>
 <script>
-const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('.dot')],label=document.querySelector('#slide-label');let active=0;
-function goTo(index){active=(index+slides.length)%slides.length;slides.forEach((slide,i)=>{const on=i===active;slide.classList.toggle('is-active',on);slide.setAttribute('aria-hidden',String(!on));});dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===active));label.textContent=String(active+1).padStart(2,'0')+' / 05';}
-function next(){goTo(active+1)}function previous(){goTo(active-1)}
-document.addEventListener('keydown',event=>{if(['ArrowRight','ArrowDown',' '].includes(event.key)){event.preventDefault();next()}if(['ArrowLeft','ArrowUp'].includes(event.key)){event.preventDefault();previous()}});
-document.querySelectorAll('[data-next]').forEach(button=>button.addEventListener('click',next));dots.forEach(dot=>dot.addEventListener('click',()=>goTo(Number(dot.dataset.dot))));
-document.querySelectorAll('[data-go]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();goTo(Number(link.dataset.go))}));
+const form=document.querySelector('#growth-form'),input=document.querySelector('#growth-password'),message=document.querySelector('#growth-message');
+form.addEventListener('submit',event=>{event.preventDefault();if(input.value==='5214'){sessionStorage.setItem('qilin-growth-unlocked','true');message.textContent='已验证，可以进入个人成长记录';message.classList.add('success');window.location.href='growth.html'}else{message.textContent='密码不正确，请重新输入';message.classList.add('error');input.select()}});
+if(sessionStorage.getItem('qilin-growth-unlocked')==='true')message.textContent='已验证，可以进入个人成长记录';
 const toast=document.querySelector('.toast');let toastTimer;document.querySelectorAll('[data-placeholder]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();toast.classList.add('is-visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('is-visible'),2200)}));
-const growthForm=document.querySelector('#growth-form'),passwordInput=document.querySelector('#growth-password'),growthMessage=document.querySelector('#growth-message');
-growthForm.addEventListener('submit',event=>{event.preventDefault();if(passwordInput.value==='5214'){sessionStorage.setItem('qilin-growth-unlocked','true');growthMessage.textContent='已验证，可以进入个人成长';growthMessage.classList.add('success');goTo(1)}else{growthMessage.textContent='密码不正确，请重新输入';growthMessage.classList.add('error');passwordInput.select()}});
-if(sessionStorage.getItem('qilin-growth-unlocked')==='true')growthMessage.textContent='已验证，可以进入个人成长';
-const filters=[...document.querySelectorAll('.filter')],skillItems=[...document.querySelectorAll('#skill-items a')],skillSearch=document.querySelector('#skill-search');let category='all';
-function filterSkills(){const q=(skillSearch.value||'').toLowerCase();skillItems.forEach(item=>item.classList.toggle('hidden',!(category==='all'||item.dataset.category===category)||!item.textContent.toLowerCase().includes(q)))}
-filters.forEach(button=>button.addEventListener('click',()=>{filters.forEach(item=>item.classList.remove('is-active'));button.classList.add('is-active');category=button.dataset.filter;filterSkills()}));skillSearch.addEventListener('input',filterSkills);
 </script>
 </body>
 </html>
