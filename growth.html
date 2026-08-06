@@ -26,6 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+SC:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./growth.css" />
   </head>
   <body data-page="growth">
     <a href="#main" class="skip-link">跳到正文</a>
@@ -86,6 +87,8 @@
         <div class="subpage-meta">
           <span class="meta-pill"><span class="dot dot-accent"></span>数据本地保存 · 浏览器 localStorage</span>
           <button class="meta-btn" id="growth-export" type="button">↧ 导出 JSON</button>
+          <button class="meta-btn meta-btn-sync" id="growth-sync" type="button">☁ 同步 GitHub</button>
+          <button class="meta-btn" id="growth-restore" type="button">↥ 从 GitHub 恢复</button>
           <label class="meta-btn meta-btn-input">
             ↥ 导入 JSON
             <input type="file" id="growth-import" accept="application/json" hidden />
@@ -891,7 +894,20 @@
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
         toast("已导出 JSON");
       };
-      document.getElementById("growth-import").onchange = async (ev) => {
+            const makeDump = () => { const dump = {}; for (const k of Object.values(STORE)) dump[k] = load(k); return dump; };
+      const bytesToBase64 = (bytes) => btoa(String.fromCharCode(...new Uint8Array(bytes)));
+      const base64ToBytes = (value) => Uint8Array.from(atob(value), (c) => c.charCodeAt(0));
+      const deriveVaultKey = async () => {
+        const material = await crypto.subtle.importKey("raw", new TextEncoder().encode("5214"), "PBKDF2", false, ["deriveKey"]);
+        return crypto.subtle.deriveKey({ name: "PBKDF2", salt: new TextEncoder().encode("qilin-growth-vault-v1"), iterations: 120000, hash: "SHA-256" }, material, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]);
+      };
+      const encryptDump = async (dump) => { const iv = crypto.getRandomValues(new Uint8Array(12)); const key = await deriveVaultKey(); const data = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(dump))); return { version: 1, iv: bytesToBase64(iv), data: bytesToBase64(data), updatedAt: new Date().toISOString() }; };
+      const decryptDump = async (vault) => { const key = await deriveVaultKey(); const data = await crypto.subtle.decrypt({ name: "AES-GCM", iv: base64ToBytes(vault.iv) }, key, base64ToBytes(vault.data)); return JSON.parse(new TextDecoder().decode(data)); };
+      const syncButton = document.getElementById("growth-sync");
+      const restoreButton = document.getElementById("growth-restore");
+      syncButton.onclick = async () => { syncButton.disabled = true; syncButton.textContent = "同步中…"; try { const response = await fetch("/api/growth", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ vault: await encryptDump(makeDump()) }) }); if (!response.ok) throw new Error(await response.text()); toast("已加密同步到 GitHub"); } catch (error) { toast(error.message.includes("GITHUB") ? "还需要在 Vercel 配置 GitHub 环境变量" : "同步失败，请稍后再试"); } finally { syncButton.disabled = false; syncButton.textContent = "☁ 同步 GitHub"; } };
+      restoreButton.onclick = async () => { if (!confirm("从 GitHub 恢复会覆盖当前浏览器里的记录，继续吗？")) return; restoreButton.disabled = true; try { const response = await fetch("/api/growth"); if (!response.ok) throw new Error("not-found"); const dump = await response.json(); const restored = await decryptDump(dump.vault); for (const k of Object.values(STORE)) if (Array.isArray(restored[k])) save(k, restored[k]); renderAll(); toast("已从 GitHub 恢复"); } catch { toast("没有可恢复的记录，或 GitHub 同步尚未配置"); } finally { restoreButton.disabled = false; } };
+document.getElementById("growth-import").onchange = async (ev) => {
         const f = ev.target.files[0];
         if (!f) return;
         if (!confirm("导入会覆盖当前所有数据，继续？")) return;
